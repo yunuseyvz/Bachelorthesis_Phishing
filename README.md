@@ -1,1 +1,1 @@
-# BA---Phishing-Extension
+# Bachelorthesis - Plugin to Evaluate Email Phishing Warnings
