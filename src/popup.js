@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       .then(() => {
         console.log('Warning type saved:', warningType);
         // optional: Display a confirmation message that the value was saved
-        alert('Warning type changed. Please refresh the email to see the changes.');
+        //alert('Warning type changed. Please refresh the email to see the changes.');
       })
       .catch((error) => {
         console.log('Error saving warning type:', error);

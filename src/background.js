@@ -19,13 +19,15 @@ function displayBanner() {
 }
 
 // Display a phishing warning when the user hovers over a link
+// TODO Link anzeigen
 function displayHover() {
   // All links in the email are retrieved, create tooltip for every link
   let links = document.getElementsByTagName('a');
   for (let i = 0; i < links.length; i++) {
     links[i].addEventListener('mouseover', function() {
       let tooltip = document.createElement('div');
-      tooltip.textContent = 'Warning! Possibly a phishing link!';
+      // Include the href attribute of the link in the tooltip text
+      tooltip.textContent = 'Warning! Possibly a phishing link: ' + this.href;
       tooltip.style.backgroundColor = 'red';
       tooltip.style.color = 'white';
       tooltip.style.position = 'absolute';
