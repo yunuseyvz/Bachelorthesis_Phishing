@@ -7,7 +7,58 @@ messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => 
   }
 });
 
-// Display a phishing warning banner on the top of the email
+/*
+* Display a phishing warning when the user hovers over a link
+* Shows a tooltip with a warning message and a countdown before the link becomes clickable
+*/  
+function displayHover() {
+  let links = document.getElementsByTagName('a');
+  for (let i = 0; i < links.length; i++) {
+
+    const mouseoverHandler = function() {
+      let tooltip = document.createElement('div');
+      tooltip.textContent = 'Warning! Possibly a phishing link: ' + this.href + '. Clickable in 10 seconds.';
+      tooltip.style.backgroundColor = '#ff0000';
+      tooltip.style.color = 'white';
+      tooltip.style.position = 'absolute';
+      tooltip.style.zIndex = '1000';
+      tooltip.style.padding = '10px';
+      tooltip.style.borderRadius = '5px'; 
+      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)'; 
+      tooltip.style.fontFamily = 'Arial, sans-serif'; 
+      tooltip.style.fontSize = '16px'; 
+      document.body.appendChild(tooltip);
+      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 10) + 'px';
+      tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
+
+      // Show tooltip for 10 seconds
+      let countdown = 9;
+      let countdownInterval = setInterval(() => {
+        if (countdown > 0) {
+          tooltip.textContent = 'Warning! Possibly a phishing link: ' + this.href + '. Clickable in ' + countdown + ' seconds.';
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+
+      setTimeout(() => {
+        tooltip.remove(); 
+        clearInterval(countdownInterval);
+      }, 10000);
+      
+      this.removeEventListener('mouseover', mouseoverHandler);
+    };
+
+    links[i].addEventListener('mouseover', mouseoverHandler);
+  }
+}
+
+
+/* 
+* Display a phishing warning banner on the top of the email, with a list of the links in the mail
+* Deprecated -> Hardcoded now
+*/ 
 function displayBanner() {
   let banner = document.createElement('div');
   banner.textContent = '⚠️ Warning! This email might be a phishing attempt!';
@@ -21,43 +72,33 @@ function displayBanner() {
   banner.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
   banner.style.marginBottom = '10px';
 
-  // The banner is inserted at the top of the body of the webpage
+  // The banner is inserted at the top of the body
   document.body.insertBefore(banner, document.body.firstChild);
-
-  // Create a div for the dropdown menu
   let dropdownMenu = document.createElement('div');
 
-  // Style the dropdown menu
-  dropdownMenu.style.display = 'none'; // Hide the dropdown menu by default
-  dropdownMenu.style.backgroundColor = '#ff4d4d'; // Match the color of the main div
+  dropdownMenu.style.display = 'none'; 
+  dropdownMenu.style.backgroundColor = '#ff4d4d'; 
   dropdownMenu.style.padding = '10px';
   dropdownMenu.style.marginTop = '5px';
 
-  // Create a p element for the warning text
   let warningText = document.createElement('p');
   warningText.textContent = 'Do not click on any links in this email. These links lead to the following domains:';
-  warningText.style.color = 'white'; // Set the color to white to match the color of the main div
-  dropdownMenu.appendChild(warningText); // Append the warning text to the dropdown menu
+  warningText.style.color = 'white'; 
+  dropdownMenu.appendChild(warningText); 
 
   // Get all the links in the email
   let links = document.getElementsByTagName('a');
-  let uniqueHostnames = new Set(); // Use a Set to store the unique hostnames
+  let uniqueHostnames = new Set(); 
   for (let i = 0; i < links.length; i++) {
-    // Create a new URL object from the href of the link
     let url = new URL(links[i].href);
-
-    // Add the hostname to the Set
     uniqueHostnames.add(url.hostname);
   }
 
-  // Create an `a` element for each unique hostname
   for (let hostname of uniqueHostnames) {
     let a = document.createElement('a');
     a.textContent = hostname;
-    a.href = 'http://' + hostname; // Set the href to the hostname
-    a.style.display = 'block'; // Make it a block element so each link is on a new line
-
-    // Append the link to the dropdown menu
+    a.href = 'http://' + hostname; 
+    a.style.display = 'block'; 
     dropdownMenu.appendChild(a);
   }
 
@@ -82,33 +123,10 @@ function displayBanner() {
   banner.appendChild(dropdownMenu);
 }
 
-
-// Display a phishing warning when the user hovers over a link
-function displayHover() {
-  // All links in the email are retrieved, create tooltip for every link
-  let links = document.getElementsByTagName('a');
-  for (let i = 0; i < links.length; i++) {
-    links[i].addEventListener('mouseover', function () {
-      let tooltip = document.createElement('div');
-      // Include the href attribute of the link in the tooltip text
-      tooltip.textContent = 'Warning! Possibly a phishing link: ' + this.href;
-      tooltip.style.backgroundColor = 'red';
-      tooltip.style.color = 'white';
-      tooltip.style.position = 'absolute';
-      tooltip.style.zIndex = '1000';
-      tooltip.style.padding = '10px';
-      document.body.appendChild(tooltip);
-      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY + 20) + 'px';
-      tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
-      // The tooltip is removed when the user moves the mouse away from the link
-      this.addEventListener('mouseout', function () {
-        tooltip.remove();
-      });
-    });
-  }
-}
-
-// Display a phishing warning on the first line of the email
+/* 
+* Display a phishing warning next to the greeting line
+* Deprecated -> Hardcoded now, doesn't really work as expected anyways
+*/ 
 function displayGreeting() {
   let firstLine = document.body.innerText.split('\n')[0];
   let firstLineElement = document.body.firstElementChild; // Get the first element in the body
@@ -132,7 +150,10 @@ function displayGreeting() {
   }
 }
 
-// Display a phishing warning banner with a progress bar
+/* 
+* Display a phishing warning banner with a progress bar
+* Deprecated -> Not really needed at the moment
+*/ 
 function displayProgressBar() {
   let banner = document.createElement('div');
   //banner.textContent = '⚠️ Warning! This email might be a phishing attempt!';
@@ -144,22 +165,18 @@ function displayProgressBar() {
   banner.style.fontSize = '1.2em';
   banner.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
   banner.style.marginBottom = '10px';
-  // Create a progress bar
   let progressBar = document.createElement('progress');
-  let percentage = Math.floor(Math.random() * 101); // Generate a random number between 0 and 100
-  progressBar.value = percentage; // Set the value to the generated number
-  progressBar.max = 100; // Set the maximum value to 100
-  // Style the progress bar
+  let percentage = Math.floor(Math.random() * 101); 
+  progressBar.value = percentage; 
+  progressBar.max = 100; 
   progressBar.style.width = '100%';
   progressBar.style.height = '20px';
-  progressBar.style.display = 'block'; // Make it a block element so it appears on a new line
-  // Create a span element for the percentage text
+  progressBar.style.display = 'block'; 
   let percentageText = document.createElement('span');
-  percentageText.textContent = percentage + '% probability for phishing'; // Set the text to the percentage value
-  percentageText.style.color = 'white'; // Set the color to white to match the color of the banner
-  percentageText.style.fontWeight = 'bold'; // Make the text bold
-  percentageText.style.display = 'block'; // Make it a block element so it appears on a new line
-  // Append the progress bar and the percentage text to the banner
+  percentageText.textContent = percentage + '% probability for phishing'; 
+  percentageText.style.color = 'white'; 
+  percentageText.style.fontWeight = 'bold'; 
+  percentageText.style.display = 'block'; 
   banner.appendChild(progressBar);
   banner.appendChild(percentageText);
   document.body.insertBefore(banner, document.body.firstChild);
