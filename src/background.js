@@ -1,10 +1,16 @@
 messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => {
-  let phishingDetected = await dummyCheckForPhishing(message); // Dummy function, always returns true 
-  if (phishingDetected) {
-    // The type of warning to display is retrieved from the local storage.
-    let { warningType } = await browser.storage.local.get('warningType');
-    displayWarning(tab.id, warningType || 'default');
-  }
+  // Get the full details of the message
+  const fullMessage = await messenger.messages.getFull(message.id);
+
+  // Check if the subject matches the desired subject
+  //if (fullMessage.headers.subject == 'Phishing Hover - Urgent: Verify Your Account Information') {
+    let phishingDetected = await dummyCheckForPhishing(message); // Dummy function, always returns true 
+    if (phishingDetected) {
+      // The type of warning to display is retrieved from the local storage.
+      let { warningType } = await browser.storage.local.get('warningType');
+      displayWarning(tab.id, warningType || 'default');
+    }
+  //}
 });
 
 /*
