@@ -54,6 +54,79 @@ function displayHover() {
   }
 }
 
+/*
+* Display a phishing warning when the user hovers over a link. Same as before, but with a progress bar
+* Shows a tooltip with a warning message and a countdown before the link becomes clickable
+*/  
+function displayHoverAnimated() {
+  let links = document.getElementsByTagName('a');
+  for (let i = 0; i < links.length; i++) {
+
+    const mouseoverHandler = function() {
+      let tooltip = document.createElement('div');
+      tooltip.style.backgroundColor = '#ff0000';
+      tooltip.style.color = 'white';
+      tooltip.style.position = 'absolute';
+      tooltip.style.zIndex = '1000';
+      tooltip.style.padding = '10px';
+      tooltip.style.borderRadius = '5px'; 
+      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)'; 
+      tooltip.style.fontFamily = 'Arial, sans-serif'; 
+      tooltip.style.fontSize = '16px'; 
+      tooltip.style.display = 'flex';
+      tooltip.style.alignItems = 'center';
+      tooltip.style.flexDirection = 'column';
+
+      let text = document.createElement('div');
+      text.textContent = 'Warning! Possibly a phishing link: ' + this.href;
+      tooltip.appendChild(text);
+
+      let progressBarContainer = document.createElement('div');
+      progressBarContainer.style.height = '3px';
+      progressBarContainer.style.width = '100%';
+      progressBarContainer.style.backgroundColor = 'white';
+      progressBarContainer.style.marginTop = '10px'; 
+
+      let progressBar = document.createElement('div');
+      progressBar.style.height = '3px';
+      progressBar.style.width = '100%'; 
+      progressBar.style.backgroundColor = 'blue';
+      progressBar.style.transition = 'width 1s linear';
+      progressBarContainer.appendChild(progressBar);
+
+      tooltip.appendChild(progressBarContainer);
+
+      document.body.appendChild(tooltip);
+      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 10) + 'px';
+      tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
+
+      // Show tooltip for 10 seconds
+      let countdown = 9;
+      progressBar.style.width = (countdown * 10) + '%';
+      countdown--;
+
+      let countdownInterval = setInterval(() => {
+        if (countdown >= 0) {
+          text.textContent = 'Warning! Possibly a phishing link: ' + this.href;
+          progressBar.style.width = (countdown * 10) + '%';
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+
+      setTimeout(() => {
+        tooltip.remove(); 
+        clearInterval(countdownInterval);
+      }, 10000);
+      
+      this.removeEventListener('mouseover', mouseoverHandler);
+    };
+
+    links[i].addEventListener('mouseover', mouseoverHandler);
+  }
+}
+
 
 /* 
 * Display a phishing warning banner on the top of the email, with a list of the links in the mail
@@ -191,6 +264,9 @@ async function displayWarning(tabId, displayType) {
       break;
     case 'hover':
       code = '(' + displayHover.toString() + ')()';
+      break;
+    case 'hoverAnimated':
+      code = '(' + displayHoverAnimated.toString() + ')()';
       break;
     case 'greeting':
       code = '(' + displayGreeting.toString() + ')()';
