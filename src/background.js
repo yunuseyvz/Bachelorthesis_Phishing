@@ -3,25 +3,22 @@ messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => 
   const fullMessage = await messenger.messages.getFull(message.id);
 
   // Check if the subject matches the desired subject
-  //if (fullMessage.headers.subject == 'Phishing Hover - Urgent: Verify Your Account Information') {
-    let phishingDetected = await dummyCheckForPhishing(message); // Dummy function, always returns true 
-    if (phishingDetected) {
-      // The type of warning to display is retrieved from the local storage.
-      let { warningType } = await browser.storage.local.get('warningType');
-      displayWarning(tab.id, warningType || 'default');
-    }
+  //if (fullMessage.headers.subject == 'Urgent: Verify Your Account Information') {
+    // The type of warning to display is retrieved from the local storage.
+    let { warningType } = await browser.storage.local.get('warningType');
+    displayWarning(tab.id, warningType || 'default');
   //}
 });
 
 /*
 * Display a phishing warning when the user hovers over a link
 * Shows a tooltip with a warning message and a countdown before the link becomes clickable
-*/  
+*/
 function displayHover() {
   let links = document.getElementsByTagName('a');
   for (let i = 0; i < links.length; i++) {
 
-    const mouseoverHandler = function() {
+    const mouseoverHandler = function () {
       let tooltip = document.createElement('div');
       tooltip.textContent = 'Warning! Possibly a phishing link: ' + this.href + '. Clickable in 10 seconds.';
       tooltip.style.backgroundColor = '#ff0000';
@@ -29,10 +26,10 @@ function displayHover() {
       tooltip.style.position = 'absolute';
       tooltip.style.zIndex = '1000';
       tooltip.style.padding = '10px';
-      tooltip.style.borderRadius = '5px'; 
-      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)'; 
-      tooltip.style.fontFamily = 'Arial, sans-serif'; 
-      tooltip.style.fontSize = '16px'; 
+      tooltip.style.borderRadius = '5px';
+      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+      tooltip.style.fontFamily = 'Arial, sans-serif';
+      tooltip.style.fontSize = '16px';
       document.body.appendChild(tooltip);
       tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 10) + 'px';
       tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
@@ -49,10 +46,10 @@ function displayHover() {
       }, 1000);
 
       setTimeout(() => {
-        tooltip.remove(); 
+        tooltip.remove();
         clearInterval(countdownInterval);
       }, 10000);
-      
+
       this.removeEventListener('mouseover', mouseoverHandler);
     };
 
@@ -63,22 +60,22 @@ function displayHover() {
 /*
 * Display a phishing warning when the user hovers over a link. Same as before, but with a progress bar
 * Shows a tooltip with a warning message and a countdown before the link becomes clickable
-*/  
+*/
 function displayHoverAnimated() {
   let links = document.getElementsByTagName('a');
   for (let i = 0; i < links.length; i++) {
 
-    const mouseoverHandler = function() {
+    const mouseoverHandler = function () {
       let tooltip = document.createElement('div');
       tooltip.style.backgroundColor = '#ff0000';
       tooltip.style.color = 'white';
       tooltip.style.position = 'absolute';
       tooltip.style.zIndex = '1000';
       tooltip.style.padding = '10px';
-      tooltip.style.borderRadius = '5px'; 
-      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)'; 
-      tooltip.style.fontFamily = 'Arial, sans-serif'; 
-      tooltip.style.fontSize = '16px'; 
+      tooltip.style.borderRadius = '5px';
+      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+      tooltip.style.fontFamily = 'Arial, sans-serif';
+      tooltip.style.fontSize = '16px';
       tooltip.style.display = 'flex';
       tooltip.style.alignItems = 'center';
       tooltip.style.flexDirection = 'column';
@@ -91,11 +88,11 @@ function displayHoverAnimated() {
       progressBarContainer.style.height = '3px';
       progressBarContainer.style.width = '100%';
       progressBarContainer.style.backgroundColor = 'white';
-      progressBarContainer.style.marginTop = '10px'; 
+      progressBarContainer.style.marginTop = '10px';
 
       let progressBar = document.createElement('div');
       progressBar.style.height = '3px';
-      progressBar.style.width = '100%'; 
+      progressBar.style.width = '100%';
       progressBar.style.backgroundColor = 'blue';
       progressBar.style.transition = 'width 1s linear';
       progressBarContainer.appendChild(progressBar);
@@ -122,10 +119,10 @@ function displayHoverAnimated() {
       }, 1000);
 
       setTimeout(() => {
-        tooltip.remove(); 
+        tooltip.remove();
         clearInterval(countdownInterval);
       }, 10000);
-      
+
       this.removeEventListener('mouseover', mouseoverHandler);
     };
 
@@ -137,7 +134,7 @@ function displayHoverAnimated() {
 /* 
 * Display a phishing warning banner on the top of the email, with a list of the links in the mail
 * Deprecated -> Hardcoded now
-*/ 
+*/
 function displayBanner() {
   let banner = document.createElement('div');
   banner.textContent = '⚠️ Warning! This email might be a phishing attempt!';
@@ -155,19 +152,19 @@ function displayBanner() {
   document.body.insertBefore(banner, document.body.firstChild);
   let dropdownMenu = document.createElement('div');
 
-  dropdownMenu.style.display = 'none'; 
-  dropdownMenu.style.backgroundColor = '#ff4d4d'; 
+  dropdownMenu.style.display = 'none';
+  dropdownMenu.style.backgroundColor = '#ff4d4d';
   dropdownMenu.style.padding = '10px';
   dropdownMenu.style.marginTop = '5px';
 
   let warningText = document.createElement('p');
   warningText.textContent = 'Do not click on any links in this email. These links lead to the following domains:';
-  warningText.style.color = 'white'; 
-  dropdownMenu.appendChild(warningText); 
+  warningText.style.color = 'white';
+  dropdownMenu.appendChild(warningText);
 
   // Get all the links in the email
   let links = document.getElementsByTagName('a');
-  let uniqueHostnames = new Set(); 
+  let uniqueHostnames = new Set();
   for (let i = 0; i < links.length; i++) {
     let url = new URL(links[i].href);
     uniqueHostnames.add(url.hostname);
@@ -176,8 +173,8 @@ function displayBanner() {
   for (let hostname of uniqueHostnames) {
     let a = document.createElement('a');
     a.textContent = hostname;
-    a.href = 'http://' + hostname; 
-    a.style.display = 'block'; 
+    a.href = 'http://' + hostname;
+    a.style.display = 'block';
     dropdownMenu.appendChild(a);
   }
 
@@ -205,7 +202,7 @@ function displayBanner() {
 /* 
 * Display a phishing warning next to the greeting line
 * Deprecated -> Hardcoded now, doesn't really work as expected anyways
-*/ 
+*/
 function displayGreeting() {
   let firstLine = document.body.innerText.split('\n')[0];
   let firstLineElement = document.body.firstElementChild; // Get the first element in the body
@@ -232,7 +229,7 @@ function displayGreeting() {
 /* 
 * Display a phishing warning banner with a progress bar
 * Deprecated -> Not really needed at the moment
-*/ 
+*/
 function displayProgressBar() {
   let banner = document.createElement('div');
   //banner.textContent = '⚠️ Warning! This email might be a phishing attempt!';
@@ -245,17 +242,17 @@ function displayProgressBar() {
   banner.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
   banner.style.marginBottom = '10px';
   let progressBar = document.createElement('progress');
-  let percentage = Math.floor(Math.random() * 101); 
-  progressBar.value = percentage; 
-  progressBar.max = 100; 
+  let percentage = Math.floor(Math.random() * 101);
+  progressBar.value = percentage;
+  progressBar.max = 100;
   progressBar.style.width = '100%';
   progressBar.style.height = '20px';
-  progressBar.style.display = 'block'; 
+  progressBar.style.display = 'block';
   let percentageText = document.createElement('span');
-  percentageText.textContent = percentage + '% probability for phishing'; 
-  percentageText.style.color = 'white'; 
-  percentageText.style.fontWeight = 'bold'; 
-  percentageText.style.display = 'block'; 
+  percentageText.textContent = percentage + '% probability for phishing';
+  percentageText.style.color = 'white';
+  percentageText.style.fontWeight = 'bold';
+  percentageText.style.display = 'block';
   banner.appendChild(progressBar);
   banner.appendChild(percentageText);
   document.body.insertBefore(banner, document.body.firstChild);
@@ -286,8 +283,4 @@ async function displayWarning(tabId, displayType) {
   if (code) {
     browser.tabs.executeScript(tabId, { code });
   }
-}
-
-async function dummyCheckForPhishing(message) {
-  return true; // Always returns true
 }
