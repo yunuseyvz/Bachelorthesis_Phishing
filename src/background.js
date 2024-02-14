@@ -81,7 +81,9 @@ function displayHoverAnimated() {
       tooltip.style.flexDirection = 'column';
 
       let text = document.createElement('div');
-      text.textContent = 'Warning! Possibly a phishing link: ' + this.href;
+      let url = new URL(this.href);
+      let hostname = url.hostname;
+      text.textContent = 'Warning! Possibly a phishing link: ' + hostname;
       tooltip.appendChild(text);
 
       let progressBarContainer = document.createElement('div');
@@ -110,7 +112,7 @@ function displayHoverAnimated() {
 
       let countdownInterval = setInterval(() => {
         if (countdown >= 0) {
-          text.textContent = 'Warning! Possibly a phishing link: ' + this.href;
+          text.textContent = 'Warning! Possibly a phishing link: ' + hostname;
           progressBar.style.width = (countdown * 10) + '%';
           countdown--;
         } else {
