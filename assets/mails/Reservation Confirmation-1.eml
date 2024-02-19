@@ -1,0 +1,48 @@
+From - Wed Feb 14 22:04:13 2024
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:                                                                                 
+Message-ID: <c8efd693-f84f-4a27-bd81-2fc1bafd63e6@gmail.com>
+Date: Wed, 11 Feb 2024 22:02:55 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: foodcompany@dinner.com
+Subject: Reservation Confirmation
+X-Mozilla-Draft-Info: internal/draft; vcard=0; receipt=0; DSN=0; uuencode=0;
+ attachmentreminder=0; deliveryformat=0
+X-Identity-Key: id1
+Fcc: imap://yyavuz1999%40gmail.com@imap.gmail.com/[Google Mail]/Gesendet
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+To: me@cloudtech.com
+Reply-To: 
+In-Reply-To: 
+References: 
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hello,<br>
+      <br>
+      Thank you for choosing us for your reservation. We're excited to
+      confirm your booking for a evening dinner on 02/02/2033 at 8 PM.<br>
+      <br>
+      Details of your reservation:<br>
+      - Reservation Date: 02/02/2033<br>
+      - Time: 8 PM<br>
+      - Number of Guests: 12<br>
+      - Special Requests: None<br>
+      <br>
+      We look forward for your visit. If you have any further questions
+      or need to make any changes to your reservation, please don't
+      hesitate to contact us.<br>
+      <br>
+      Best regards,<br>
+      FoodCompany<br>
+    </p>
+  </body>
+</html>
