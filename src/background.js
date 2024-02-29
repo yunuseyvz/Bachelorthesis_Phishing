@@ -6,16 +6,22 @@ messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => 
     code = '(' + hover.toString() + ')()';
   }
   else if (fullMessage.headers.subject == 'Mandatory Employee Survey!') {
-    code = '(' + greeting.toString() + ')()';
+    code = '(' + greeting1.toString() + ')()';
   }
-  else if (fullMessage.headers.subject == 'Important: Verification required') {
-    code = '(' + color.toString() + ')()';
+  else if (fullMessage.headers.subject == 'Participation Required: Strategic Employee Survey') {
+    code = '(' + greeting2.toString() + ')()';
   }
   else if (fullMessage.headers.subject == 'Important: Another Verification required!') {
-    code = '(' + slide.toString() + ')()';
+    code = '(' + banner1.toString() + ')()';
+  }
+  else if (fullMessage.headers.subject == 'Important: Verification required') {
+    code = '(' + banner2.toString() + ')()';
   }
   else if (fullMessage.headers.subject == 'Weekly Team Meeting Invitation') {
-    code = '(' + pulse.toString() + ')()';
+    code = '(' + signature1.toString() + ')()';
+  }
+  else if (fullMessage.headers.subject == 'Monthly Jour Fixe Invitation') {
+    code = '(' + signature2.toString() + ')()';
   }
   browser.tabs.executeScript(tab.id, { code });
 });
@@ -30,10 +36,11 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 /*
 * Display a phishing warning when the user hovers over a link.
-* Shows a tooltip with a warning message and a countdown before the link becomes clickable
 */
 function hover() {
   let links = document.getElementsByTagName('a');
+  const phish = `assets/phished.html`;
+
   for (let i = 0; i < links.length; i++) {
 
     const mouseoverHandler = function () {
@@ -66,7 +73,7 @@ function hover() {
       let progressBar = document.createElement('div');
       progressBar.style.height = '3px';
       progressBar.style.width = '100%';
-      progressBar.style.backgroundColor = 'blue';
+      progressBar.style.backgroundColor = 'orange';
       progressBar.style.transition = 'width 1s linear';
       progressBarContainer.appendChild(progressBar);
 
@@ -101,16 +108,27 @@ function hover() {
     };
 
     links[i].addEventListener('mouseover', mouseoverHandler);
+    links[i].addEventListener('click', () => {
+      links[i].setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
   }
 }
 
 /*
-* Display a warning next to the greeting message in the email
-* Add an event listener to each list item to open a new tab with the corresponding email
+* Functions for the greeting warnings
 */
-function greeting() {
+function greeting1() {
   // Get the warning banner and list items
   const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
   const listItems = document.querySelectorAll('.past-emails li');
   // Add an event listener to each list item
   listItems.forEach((item, index) => {
@@ -141,34 +159,69 @@ function greeting() {
       .past-emails li:hover {
         background-color: #45a049; 
       }
-    `;
-  // Append the style element to the head of the document
-  document.head.appendChild(style);
-}
-
-
-/*
-* Function for the pulse animation
-*/
-function pulse() {
-  const warningBanner = document.querySelector('.warning-banner');
-  if (warningBanner) {
-    console.log('Pulse warning banner');
-    const style = document.createElement('style');
-    style.innerHTML = `
+      @keyframes slide {
+        0% {
+          transform: translateX(1000px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
       @keyframes pulse {
         0% {
           transform: scale(1);
         }
         50% {
-          transform: scale(1.07);
+          transform: scale(1.03);
         }
         100% {
           transform: scale(1);
         }
       }
       .warning-banner {
-        animation: pulse 2s infinite;
+        transform: translateX(1000px);
+        animation: slide 1s forwards, pulse 1s ease-out 2s;
+      }
+    `;
+  // Append the style element to the head of the document
+  document.head.appendChild(style);
+}
+
+function greeting2() {
+  const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
+  if (warningBanner) {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes slide {
+        0% {
+          transform: translateX(1000px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .warning-banner {
+        transform: translateX(1000px);
+        animation: slide 1s forwards 1s, pulse 1s ease-out 3s;
       }
     `;
     document.head.appendChild(style);
@@ -176,10 +229,136 @@ function pulse() {
 }
 
 /*
-* Function for the sliding animation
+* Functions for the signature warnings
 */
-function slide() {
+function signature1() {
   const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
+  if (warningBanner) {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes slide {
+        0% {
+          transform: translateX(1000px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .warning-banner {
+        transform: translateX(1000px);
+        animation: slide 1s forwards 1s, pulse 1s ease-out 3s;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
+function signature2() {
+  const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
+  if (warningBanner) {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes slide {
+        0% {
+          transform: translateX(1000px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .warning-banner {
+        transform: translateX(1000px);
+        animation: slide 1s forwards 1s, pulse 1s ease-out 3s;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
+function signatureAlt() {
+  const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
+  if (warningBanner) {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes scaleUp {
+        0% {
+          transform: scale(0%);
+          transform-origin: top left;
+        }
+        100% {
+          transform: scale(100%);
+          transform-origin: top left;
+        }
+      }
+      .warning-banner {
+        transform: scale(0%);
+        animation: scaleUp 0.5s 1s forwards;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
+/*
+* Functions for the standard banner warnings
+*/
+function banner1() {
+  const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
+
   if (warningBanner) {
     const style = document.createElement('style');
     style.innerHTML = `
@@ -191,37 +370,73 @@ function slide() {
           transform: translateX(0);
         }
       }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.02);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
       .warning-banner {
-        transform: translateX(100%);
-        animation: slide 2s forwards;
         
+        animation: slide 1s forwards 1s, pulse 1s ease-out 3s;
       }
     `;
     document.head.appendChild(style);
   }
 }
 
-/*
-* Function for the color change animation
-*/
-function color() {
+function banner2() {
   const warningBanner = document.querySelector('.warning-banner');
+  const phish = `assets/phished.html`;
+  const links = document.querySelectorAll('.link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      link.setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  });
   if (warningBanner) {
     const style = document.createElement('style');
     style.innerHTML = `
-      @keyframes colorChange {
+      @keyframes slide {
         0% {
-          background-color: #ff0000;  
-        }
-        50% {
-          background-color: #ff7f7f;  
+          transform: translateY(-100%);
         }
         100% {
-          background-color: #ff0000; 
+          transform: translateY(0%);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
         }
       }
       .warning-banner {
-        animation: colorChange 2s infinite;
+        animation: slide 1s forwards, pulse 1s 3s forwards;
+      }
+      body {
+        transform: translateY(-90px); 
+        animation: pushDown 1s forwards;
+        animation-delay: 1s;
+      }
+      @keyframes pushDown {
+        0% {
+          transform: translateY(-90px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
       }
     `;
     document.head.appendChild(style);
