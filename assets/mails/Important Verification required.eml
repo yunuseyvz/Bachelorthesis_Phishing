@@ -1,0 +1,88 @@
+From - Tue Feb 27 17:18:05 2024
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:                                                                                 
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys: 
+Message-ID: <f95e4dd7-e5af-4b07-8fc2-9e4f60c2bfdb@gmail.com>
+Date: Mon, 08 Jan 2024 17:05:22 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: bankinginformation@banks.to
+Subject: Important: Verification
+ required
+X-Mozilla-Draft-Info: internal/draft; vcard=0; receipt=0; DSN=0; uuencode=0;
+ attachmentreminder=0; deliveryformat=0
+X-Identity-Key: id1
+Fcc: imap://yyavuz1999%40gmail.com@imap.gmail.com/[Google Mail]/Gesendet
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+To: me@cloudtech.com
+Reply-To: 
+In-Reply-To: 
+References: 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p> </p>
+    <div class="warning-banner"> ⚠️Warning: <span
+        style="font-weight: normal;">This message might be a phishing
+        attempt. Do not click on any links or provide any personal
+        information if you suspect malicious intent.</span></div>
+    <div class="header">
+      <h1>River Bank</h1>
+    </div>
+    <div class="content">
+      <h2>Important Security Alert: Verification Required</h2>
+      <p>Dear Valued Customer,</p>
+      <p>We have detected unusual login attempts on your online banking
+        account from an unrecognized device. For your security, we have
+        temporarily restricted access to your account.</p>
+      <p>To verify your identity and restore access, please click the
+        link below:</p>
+      <a class="link" href="/">Verification</a><br>
+      <p>We apologize for any inconvenience but ensuring the security of
+        your account is our highest priority. This verification is
+        mandatory and needs to be completed promptly.</p>
+      <p>Thank you for your cooperation.</p>
+      <p>Best regards,</p>
+      <p>River Bank<br>
+      </p>
+    </div>
+    <div class="footer">
+      <p>This is an automated message, please do not reply.</p>
+    </div>
+    <p>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <style>body { font-family: Arial, sans-serif; }.header { background-color: #0056b3; color: white; padding: 10px; text-align: center; }.content { padding: 20px; }.button {
+              background-color: #008CBA;
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+              border-radius: 5px;
+            }.warning-banner {
+              background-color: #ff4d4d; 
+              color: white; 
+              padding: 15px;
+              margin-bottom: 15px;
+              text-align: center;
+              font-weight: bold;
+              border-radius: 10px; 
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+transform: translateY(-500px);
+            }.footer { background-color: #f2f2f2; color: black; padding: 10px; text-align: center; }</style>
+    </p>
+  </body>
+</html>
