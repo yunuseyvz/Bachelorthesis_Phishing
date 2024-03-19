@@ -3,7 +3,10 @@ messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => 
   let code;
   const fullMessage = await messenger.messages.getFull(message.id);
   if (fullMessage.headers.subject == 'Urgent: Verify Your Account Information') {
-    code = '(' + hover.toString() + ')()';
+    code = '(' + hover1.toString() + ')()';
+  }
+  else if (fullMessage.headers.subject == 'Secure Your Account!') {
+    code = '(' + hover2.toString() + ')()';
   }
   else if (fullMessage.headers.subject == 'Mandatory Employee Survey!') {
     code = '(' + greeting1.toString() + ')()';
@@ -37,7 +40,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 /*
 * Display a phishing warning when the user hovers over a link.
 */
-function hover() {
+function hover1() {
   let links = document.getElementsByTagName('a');
   const phish = `assets/phished.html`;
 
@@ -92,6 +95,84 @@ function hover() {
       let countdownInterval = setInterval(() => {
         if (countdown >= 0) {
           text.textContent = '⚠️ Warning! Possibly a phishing link: ' + hostname;
+          progressBar.style.width = (countdown * 33.33) + '%';
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+
+      setTimeout(() => {
+        tooltip.style.left = '38%'; // Move tooltip to the side
+        clearInterval(countdownInterval);
+      }, 3000);
+
+      this.removeEventListener('mouseover', mouseoverHandler);
+    };
+
+    links[i].addEventListener('mouseover', mouseoverHandler);
+    links[i].addEventListener('click', () => {
+      links[i].setAttribute('href', phish);
+      browser.runtime.sendMessage({ openUrlInTab: phish });
+    });
+  }
+}
+
+function hover2() {
+  let links = document.getElementsByTagName('a');
+  const phish = `assets/phished.html`;
+
+  for (let i = 0; i < links.length; i++) {
+
+    const mouseoverHandler = function () {
+      let tooltip = document.createElement('div');
+      tooltip.style.backgroundColor = '#ff4d4d';
+      tooltip.style.color = 'white';
+      tooltip.style.position = 'absolute';
+      tooltip.style.zIndex = '1000';
+      tooltip.style.padding = '10px';
+      tooltip.style.borderRadius = '5px';
+      tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+      tooltip.style.fontFamily = 'Arial, sans-serif';
+      tooltip.style.fontSize = '16px';
+      tooltip.style.display = 'flex';
+      tooltip.style.alignItems = 'center';
+      tooltip.style.flexDirection = 'column';
+
+      let text = document.createElement('div');
+      let url = new URL(this.href);
+      let hostname = url.hostname;
+      text.textContent = '⚠️ Warning! Possibly a phishing link!';
+      tooltip.appendChild(text);
+
+      let progressBarContainer = document.createElement('div');
+      progressBarContainer.style.height = '3px';
+      progressBarContainer.style.width = '100%';
+      progressBarContainer.style.backgroundColor = 'white';
+      progressBarContainer.style.marginTop = '10px';
+
+      let progressBar = document.createElement('div');
+      progressBar.style.height = '3px';
+      progressBar.style.width = '100%';
+      progressBar.style.backgroundColor = 'orange';
+      progressBar.style.transition = 'width 1s linear';
+      progressBarContainer.appendChild(progressBar);
+
+      tooltip.appendChild(progressBarContainer);
+
+      document.body.appendChild(tooltip);
+      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 8) + 'px';
+      tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
+
+      tooltip.style.transition = 'left 1s ease-out';
+
+      let countdown = 2;
+      progressBar.style.width = (countdown * 33.33) + '%';
+      countdown--;
+
+      let countdownInterval = setInterval(() => {
+        if (countdown >= 0) {
+          text.textContent = '⚠️ Warning! Possibly a phishing link!';
           progressBar.style.width = (countdown * 33.33) + '%';
           countdown--;
         } else {
