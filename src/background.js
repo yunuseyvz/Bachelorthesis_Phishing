@@ -53,6 +53,7 @@ function hover1() {
       tooltip.style.position = 'absolute';
       tooltip.style.zIndex = '1000';
       tooltip.style.padding = '10px';
+      tooltip.style.marginRight = '100px';
       tooltip.style.borderRadius = '5px';
       tooltip.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
       tooltip.style.fontFamily = 'Arial, sans-serif';
@@ -83,7 +84,7 @@ function hover1() {
       tooltip.appendChild(progressBarContainer);
 
       document.body.appendChild(tooltip);
-      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 15) + 'px';
+      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 14) + 'px';
       tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
 
       tooltip.style.transition = 'left 1s ease-out';
