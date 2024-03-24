@@ -64,7 +64,7 @@ function hover1() {
       let text = document.createElement('div');
       let url = new URL(this.href);
       let hostname = url.hostname;
-      text.textContent = '⚠️ Warning! Possibly a phishing link: ' + hostname;
+      text.textContent = '⚠️ Warning: The link ' + hostname + ' is flagged for its unusual pattern and length, which may indicate a phishing attempt.';
       tooltip.appendChild(text);
 
       let progressBarContainer = document.createElement('div');
@@ -83,7 +83,7 @@ function hover1() {
       tooltip.appendChild(progressBarContainer);
 
       document.body.appendChild(tooltip);
-      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 8) + 'px';
+      tooltip.style.top = (this.getBoundingClientRect().top + window.scrollY - 15) + 'px';
       tooltip.style.left = (this.getBoundingClientRect().left + window.scrollX) + 'px';
 
       tooltip.style.transition = 'left 1s ease-out';
@@ -94,7 +94,7 @@ function hover1() {
 
       let countdownInterval = setInterval(() => {
         if (countdown >= 0) {
-          text.textContent = '⚠️ Warning! Possibly a phishing link: ' + hostname;
+          text.textContent = '⚠️ Warning: The link ' + hostname + ' is flagged for its unusual pattern and length, which may indicate a phishing attempt.';
           progressBar.style.width = (countdown * 33.33) + '%';
           countdown--;
         } else {
