@@ -29,7 +29,7 @@ To test the plugin with the provided email samples:
 ## Acknowledgments
 
 - Thank you to my thesis advisors for guidance and support throughout this project.
-- Appreciation to all participants in the eye-tracking study for their invaluable contributions to the research.
+- Appreciation to all participants in the study for their invaluable contributions to the research.
 - Thanks to the University of the Bundeswehr for providing the resources needed to complete this work.
 
 
