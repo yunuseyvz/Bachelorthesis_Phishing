@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Phishing Detector",
+  "version": "1.0",
+  "description": "Detects phishing emails and alerts the user.",
+  "permissions": [
+    "messagesRead",
+    "messagesModify",
+    "storage"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "phishing@yunus.com"
+    }
+  },
+  "background": {
+    "scripts": [
+      "src/background.js"
+    ]
+  }
+}
