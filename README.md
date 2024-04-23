@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains all the materials related to my Bachelorthesis project on evaluating visual warnings in email clients. .
+This repository contains all the materials related to my Bachelorthesis project on evaluating visual warnings in email clients.
 
 ## Contents
 
