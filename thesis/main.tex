@@ -58,6 +58,9 @@
 \usepackage{tikz-uml}
 \usepackage{float}
 \usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{tabularray}
 \usepgfplotslibrary{statistics}
 \pgfplotsset{width=10cm,compat=1.15}
 \input{acronyms}
@@ -310,19 +313,34 @@ The implications of these results are substantial, advocating for a shift in how
 \chapter{Background and Related Work}
 \label{sec:relatedwork}
 
-Phishing attacks represent a significant and ever-evolving challenge in the realm of cybersecurity. This section provides an overview of key research areas that are crucial in understanding and combating these threats.  From the psychology underpinning social engineering tactics to the necessity of effective phishing training for users and the latest in phishing detection technologies, each area offers vital insights.
+In the dynamic field of cybersecurity, understanding the multifaceted nature of phishing attacks is essential for developing effective defensive strategies. This section provides a comprehensive overview of the key areas of research that inform our study on phishing warnings. By exploring the psychological underpinnings of social engineering, the evolution of phishing detection technologies, and the critical role of user education, we aim to contextualize our research within the broader discourse on combating phishing. Each of these areas offers vital insights that directly influence the design and implementation of phishing warnings, ensuring they are not only technically sound but also psychologically effective. This background forms the basis for our approach to enhancing how users recognize and respond to phishing threats.
 
-\section{Previous Approaches to Combating Phishing}
-\textbf{Technical Detection Strategies}
+\section{Phishing Definition and Techniques}
+Phishing is a deceptive practice where cybercriminals use fraudulent communication, typically via email, to trick individuals into revealing personal information, such as passwords and credit card numbers. This cyber threat exploits the trust of users through cleverly disguised messages that mimic legitimate sources. Understanding the array of phishing techniques is essential for developing effective countermeasures and for training users to recognize and avoid these threats.
 
+As detailed by Alkhalil et al. \cite{alkhalil}, phishing attacks employ a combination of technical and psychological tactics to extract sensitive information from victims. These attacks are not uniform but vary significantly in their approach and execution.
+Alkhalil et al. identify several prevalent phishing techniques:
+\begin{itemize}
+    \item \textit{Email Phishing:} The primary method where attackers send fraudulent emails mimicking legitimate sources to steal personal information. Visual warnings for this technique should clearly differentiate genuine communications from phishing attempts, for instance by highlighting suspicious elements directly within the email interface.
+    \item \textit{Spear Phishing and Whaling:} Highly targeted forms that use personalized information to increase the attack's credibility.
+    \item \textit{Vishing (Voice Phishing) and SMiShing (SMS Phishing):} Phishing via phone calls and SMS that exploit the user's trust in mobile communications.
+    \item \textit{Website Forgery:} Creating counterfeit websites that replicate genuine ones to capture personal data.
+    \item \textit{Social Media Phishing:} Using social platforms to trick users into revealing sensitive data through deceptive posts or messages.
+\end{itemize}
+
+This classification underscores the importance of tailored defensive strategies that address the specific vectors and tactics of each phishing type, enhancing both technological defenses and user training programs.
+
+%\section{Previous Approaches to Combating Phishing}
+\section{Technical Detection Strategies}
 Phishing detection technologies are essential tools, designed to identify and mitigate phishing attempts across various digital platforms. Among these technologies, email client spam filters, with phishing emails being a subset of spam mails, represent a fundamental line of defense, filtering out potential phishing emails based on specific criteria such as sender reputation \cite{shi} or message content \cite{alexy}.
 
 In their paper, Bhomwick et al. \cite{alexy} delve into the evolution of machine learning techniques in the realm of email spam filtering. They chart the journey from initial heuristic-based approaches to the adoption of sophisticated machine learning models, capable of dynamically adapting to the continually evolving strategies employed by spammers. The paper not only highlights the effectiveness of these techniques but also points towards future directions for research in improving spam detection mechanisms.
 
 Another approach in phishing detection is explored by Md. Abu Ashraf Siddiq et al. \cite{siddiq}, utilizing deep learning techniques. Their study, employing neural networks, showcases the potential of deep learning in accurately identifying phishing websites, with achievements of up to 94.8\% accuracy. This highlights deep learning's pivotal role in cybersecurity, especially in distinguishing malicious sites, and emphasizes its contribution to advancing phishing detection systems.
 
-\textbf{User Education and Training}
+While technological solutions are crucial, their effectiveness ultimately depends on the users' ability to understand and respond to the warnings they generate. This interdependency brings our research into focus, aiming to optimize visual warnings to ensure they not only capture attention but also convey urgency effectively, prompting appropriate user actions in the face of potential threats.
 
+\section{User Education and Training}
 Understanding the mechanisms behind phishing attacks and the reasons users fall prey to them is essential in developing effective countermeasures. A key vulnerability is the general lack of cybersecurity awareness among users, rendering them susceptible to manipulation by attackers. In their paper Dhamija et al. \cite{dhamija} this issue is highlighted, pointing out the critical need for enhanced user understanding to mitigate vulnerability to phishing shemes. 
 
 To adress this gap, various training methods have been explored, aiming to improve user ability to recognize and resist phishing attempts. Research by Sheng et al. \cite{sheng} showcases an innovative approach in phishing education through the 'Anti-Phishing Phil' game. This research demonstrates that integrating educational content with interactive gameplay can significantly increase the efficacy of cybersecurity training. Such engaging methods not only educate but also actively involve users in the learning process, making the lessons more memorable and practical. 
@@ -331,31 +349,19 @@ Further emphasizing the importance of user education, Kumaguru et al. \cite{kuma
 
 Additionally, Wash's article \cite{wash} on how IT experts detect phishing emails provides a unique perspective on the cognitive strategies employed by experienced professionals. By interviewing IT experts, Wash explains a three-stage process these professionals use: sensemaking, suspicion, and decision-making, when evaluating the legitimacy of an email. This approach underscores the depth of expertise and vigilance required to effectively identify phishing attempts, highlighting the potential benefits of training programs that enhance these cognitive skills among general users.
 
-In conclusion, the success of phishing attacks largely hinges on exploiting user vulnerabilities, primarily due to inadequate cybersecurity awareness. The research reviewed here underscores the significance of user education in fortifying defenses against such threats.
-
-\section{Phishing Techniques}
-Phishing attacks utilize a blend of technical and psychological tactics to extract sensitive information from victims, as detailed by Alkhalil et al. \cite{alkhalil}. These attacks involve various stages, from target research to the deployment of deceptive messages designed to look trustworthy.
-
-Alkhalil et al. identify several prevalent phishing techniques:
-\begin{itemize}
-    \item \textit{Email Phishing:} The primary method where attackers send fraudulent emails mimicking legitimate sources to steal personal information.
-    \item \textit{Spear Phishing and Whaling:} Highly targeted forms that use personalized information to increase the attack's credibility.
-    \item \textit{Vishing (Voice Phishing) and SMiShing (SMS Phishing):} Phishing via phone calls and SMS that exploit the user's trust in mobile communications.
-    \item \textit{Website Forgery:} Creating counterfeit websites that replicate genuine ones to capture personal data.
-    \item \textit{Social Media Phishing:} Using social platforms to trick users into revealing sensitive data through deceptive posts or messages.
-\end{itemize}
-
+Integrating these insights, our study leverages the principles of effective education and cognitive engagement in designing visual warnings that are not only noticeable but also informative. By enhancing user understanding of what phishing attempts look like, we aim to elevate the baseline of cybersecurity awareness, thereby reducing the efficacy of phishing attacks.
 
 \section{Social Engineering and the Human Factor}
 Social engineering is described as an attack type where the assailant exploits human vulnerabilities through social interaction to compromise cybersecurity goals like confidentiality, integrity, and availability of cyber elements. Unlike traditional attacks that may require overcoming technical barriers, social engineering attacks manipulate human psychology to bypass security measures. It's particularly challenging to defend against because it preys on innate human traits, which can often be turned into security vulnerabilities by skilled attackers \cite{Wang2021}.
 
-The study by Albladi et al. \cite{albladi} examines factors that predict individuals' vulnerability to social engineering in social networks. It proposes a model incorporating user characteristics such as level of involvement, social network experience, and perceptual factors like risk perception and competence. This research aims to identify the most vulnerable users for targeted training programs, contributing to safer social networking practices.
+Exploring vulnerability in social networks, Albladi et al. \cite{albladi} analyze factors that predict individuals' vulnerability to social engineering in social networks. It proposes a model incorporating user characteristics such as level of involvement, social network experience, and perceptual factors like risk perception and competence. This research aims to identify the most vulnerable users for targeted training programs, contributing to safer social networking practices.
 
-The study by Koddebusch \cite{koddebusch} highlights the specific persuasive techniques employed in phishing emails, such as invoking authority or urgency, which effectively manipulate users' decision-making processes. This manipulation illustrates how cyber attackers exploit psychological triggers to induce actions that users might otherwise consider risky or unnecessary. Koddebusch's findings provide empirical evidence that these persuasion strategies significantly increase the success rate of phishing attacks, underscoring the critical need for awareness and training that can help individuals recognize and resist such tactics.
+Highlighting persuasive email techniques, Koddebusch \cite{koddebusch} focuses on the specific persuasive techniques employed in phishing emails, such as invoking authority or urgency, which effectively manipulate users' decision-making processes. This manipulation illustrates how cyber attackers exploit psychological triggers to induce actions that users might otherwise consider risky or unnecessary. Koddebusch's findings provide empirical evidence that these persuasion strategies significantly increase the success rate of phishing attacks, underscoring the critical need for awareness and training that can help individuals recognize and resist such tactics.
 
-The paper by Abdrabou et al. \cite{abdrabou} investigates how phishing emails affect user behavior by tracking their gaze and mouse movements during an email sorting task. The study aims to understand if these physiological and behavioral cues can serve as indicators of exposure to phishing attacks, which are often designed to manipulate users into revealing sensitive information. Their findings suggest that subtle changes in behavior, such as eye movements or mouse dynamics, could potentially be used to identify when users are interacting with phishing content. 
+In their research, Abdrabou et al. \cite{abdrabou} investigate how phishing emails affect user behavior by tracking their gaze and mouse movements during an email sorting task. The study aims to understand if these physiological and behavioral cues can serve as indicators of exposure to phishing attacks, which are often designed to manipulate users into revealing sensitive information. Their findings suggest that subtle changes in behavior, such as eye movements or mouse dynamics, could potentially be used to identify when users are interacting with phishing content. 
 
-Distler's study \cite{distler} examines the impact of various contextual factors on individuals' responses to phishing within an organizational setting. Using an in-situ deception methodology with 14 participants in their real work environments, the study reveals that contexts significantly influence the likelihood of falling for phishing emails. Distler's findings underscore the importance of contextualized training and proactive organizational policies to enhance cybersecurity.  The research also underscores the role of language and writing style in the detection of phishing mails, revealing that unexpected variations in these elements can alert recipients to potential phishing attempts. \newline 
+Distler's study \cite{distler} examines the impact of various contextual factors on individuals' responses to phishing within an organizational setting. Using an in-situ deception methodology with 14 participants in their real work environments, the study reveals that contexts significantly influence the likelihood of falling for phishing emails. Distler's findings underscore the importance of contextualized training and proactive organizational policies to enhance cybersecurity.  The research also underscores the role of language and writing style in the detection of phishing mails, revealing that unexpected variations in these elements can alert recipients to potential phishing attempts. 
+
 Building on Distler's findings, our study also introduces and evaluates targeted phishing warnings that focus on anomalies in greeting patterns and email signatures—common areas where deviations from normative language use might occur.  By flagging unusual language patterns that recipients have learned to associate with phishing, as evidenced in Distler’s study, these warnings aim to enhance the detection capabilities of email users, potentially increasing their vigilance and reducing the likelihood of successful phishing attacks. 
 
 %\section{Purpose of this Research}
@@ -373,7 +379,7 @@ For the recruitment of participants for this study, we utilized multiple communi
 \section{Material}
 \subsection{Technical Equipment and Tools}
 Central to the empirical aspect of this study is the integration of eye-tracking technology, specifically utilizing the Tobii Pro Spark eye tracker in conjunction with the Tobii Pro Lab software. This setup plays a crucial role in objectively capturing where participants' attention is focused as they interact with email content and phishing warnings. By recording gaze patterns we gain valuable insights into the reactions to different warning designs. The Tobii Pro Lab software allows us the seamless recording of the participants' screen alongside their gaze movements and patterns, faciliating a comprehensive analysis of the captured data. \newline 
-Audio recording was conducted using a Google Pixel smartphone, which features built-in auto transcription software, providing us with a reliable method for capturing and transcribing participant feedback during the study. Each transcript was additionally manually reviewed to ensure the accuracy and integrity of the data.
+Audio recording was conducted using a Google Pixel smartphone, which features built-in auto transcription software, providing us with a reliable method for capturing and transcribing participant feedback during the study. Each transcript was additionally manually reviewed to not only ensure the accuracy of the data but to also filter out irrelevant or personal information.
 
 \subsection{Emails}
 To establish a genuine email environment for the study, we created a suite of 30 emails to mirror the typical inbox of a professional workspace. This collection comprised routine business correspondences, such as project updates, meeting invitations, and newsletters, intertwined with 9 simulated phishing emails. The inclusion of one false negative, a phishing email not recognized as such, further emulates the realistic challenges users face. These simulations employed prevalent phishing strategies observed in actual attacks, such as soliciting confidential information, fraudulent alerts, and deceptive links to malicious websites.
@@ -396,18 +402,30 @@ To establish a genuine email environment for the study, we created a suite of 30
 
 \section{Procedure}
 
-\subsection{Initial Setup}
+\subsection{Consent and Demographic Data}
 
-After obtaining consent, which includes agreement to screen, audio recording, and eye-tracking, participants are briefed on the study's setup. This involves an explanation of the eye-tracking process and for the unfamiliar a brief explanation of Mozilla Thunderbird and it's interface. The Tobii Pro Lab software is used for recording screen and gaze patterns. Audio is also captured during the interview, for a better evaluation of the participants qualitative feedback later on. Participants are also informed that they may ask questions at any point during the study. 
+Before beginning with the study tasks, participants are required to sign a consent form that includes permissions for screen and audio recording as well as eye-tracking. Following consent, they are asked to provide demographic information such as age, gender, educational background, and professional experience. Additionally, participants fill out the short version of the Affinity for Technology Interaction Scale (ATI-S)\footnote{https://ati-scale.org/}. This scale assesses individuals' comfort levels and predispositions towards technology, which helps to illuminate how these factors may influence their perceptions and interactions with phishing warnings. This comprehensive data collection enables a detailed analysis of the relationships between demographic traits, technological affinity, and responses to phishing warnings.
 
-\subsection{Collecting Demographic Data}
+\subsection{Briefing and Setup}
 
-Before beginning with the task, participants are asked to provide demographic information, including age, gender, educational background, and professional experience. In addition to these demographic details, participants complete the short version of the Affinity for Technology Interaction Scale (ATI-S)\footnote{https://ati-scale.org/}. This instrument measures individuals' predispositions and comfort levels with technology, offering a nuanced understanding of how attitudes towards technoloy might influence the perception and effectiveness of phishing warnings. Collecting this combined data allows for a deeper analysis of correlations between demographic characteristics, technology affinity and responses to phishing warnings.
+Participants receive a briefing on the eye-tracking process and a brief overview of Mozilla Thunderbird if they are not already familiar with its interface. The eye-tracking calibration is conducted next to ensure accurate data capture. Audio recording is also enabled to capture the participants' verbal feedback throughout the study, facilitating later analysis of their qualitative responses. Participants are informed that they are welcome to ask questions at any time during the study to clarify any doubts or concerns they may have.
 
 \subsection{Phase One: Sorting Task and Collection of Eyetracking Data}
 
-The quantitative backbone of the study is the eyetracking data collected as participants interact with a series of emails. This data captures various metrics, such as initial fixation points, gaze movements and the amount of time spent looking at specific elements. Analyzing this data provides objective insights into how participants visually prioritize information in an email and the degree to which phishing warnings capture and hold their attention. \newline
-To achieve this goal, participants are instructed to assume the role of an employee at the fictional company "CloudTech". They are provided with a folder filled with various emails, including messages from fictional colleagues and company communications, to mimic a realistic work environment. Participants are not aware, that among these mails some are phishing attempts. Their task is to manage this inbox as they would with their own. To streamline the task and ensure clarity in the process, we decided to instruct participants to simply discard emails into the trash folder whenever they deem it necessary, without the need for categorizing or marking emails as important. This adjustment aims to ease the sorting process, allowing for a more focused evaluation of how participants identify and respond to potential phishing attempts. \newline During the sorting process, participants are instructed to verbalize their thoughts and decisions, explaining why they categeorize emails in a particular way. This aims to provide insight into their thought process and interaction with the email content. The observer's role is to listen and monitor the participants' explanations with minimal intervention. Participants are allocated approximately 10 minutes to complete the task. 
+Phase One serves as the quantitative backbone of our study, utilizing eye-tracking technology to gather gaze data as participants engage with a series of emails. This phase is designed to simulate a real-world working environment to objectively assess how participants interact with our phishing warnings in a typical workflow. Before beginning with the task 
+
+\textbf{Task Setup and Environment}
+
+Participants are cast in the role of an employee at the fictional company "CloudTech". This setup is intended to create a realistic email environment. Upon commencement they are provided with a folder containing a mix of emails, including routine communications from fictional colleagues and company announcements. Within these emails there are several phishing attempts, though participants are not made aware of these inclusions to avoid biasing their responses.  
+
+\textbf{Instructions and Procedure}
+
+To simplify the email management task and ensure clarity, participants are instructed to discard any email into the trash folder that they suspect or deem unnecessary, without the need to categorize or mark emails explicitly as important. This modification is designed to streamline the sorting process, allowing participants to focus more on the content and less on organizational tasks. 
+During the sorting process, participants are encouraged to verbalize their thoughts and decisions. They explain their rationale for categorizing each email as they do, providing insights into their cognitive processes and interaction with the email content. This "think aloud" method is crucial for understanding the decision-making process behind their actions. \newpage
+
+\textbf{Observer Role and Time Allocation}
+
+The observer's role during this phase is to listen and monitor the explanations provided by the participants, intervening minimally to avoid influencing their natural behavior. Each participant is allocated approximately 10 minutes to complete the task.
 
 \subsection{Phase Two: Gathering Qualitative Feedback}
 
@@ -451,7 +469,7 @@ The selection of metrics and analysis techniques within this study is designed t
 \textbf{Visualization Tools and Gaze Path Analysis}
 
 Tobii Pro Lab provided tools for mapping gaze points, allowing us to observe and analyze where and how long participants looked at specific areas within the email interface, including and especially the phishing warnings. The software also enabled us to track the sequence of gaze movements, helping us to understand the natural reading patterns and how these were influenced by the placement and animations of phishing warnings.
-Furthermore, by generating a accumulated heat map (see figure \ref{fig:heatmap}), we could easily identify which parts of the email were most frequently viewed across all participants. This helped in assessing the visual impact of our warning designs, as areas with higher concentrations of gaze points indicated greater attention from participants. \newpage
+Furthermore, by generating a accumulated heat map (see figure \ref{fig:heatmap}), we could easily identify which parts of the email were most frequently viewed across all participants. This helped in assessing the visual impact of our warning designs, as areas with higher concentrations of gaze points indicated greater attention from participants.
 
 \textbf{Times of Interest}
 
@@ -467,7 +485,7 @@ We defined specific Areas of Interests (AOI) within the email interface to quant
     \caption{AOI zones set in Tobii Pro Lab}
     \label{fig:aoi}
 \end{figure}
-
+\newpage
 \textbf{Collected Metrics}
 
 \begin{itemize}
@@ -592,11 +610,12 @@ This approach aligns closely with the research conducted Petelka et al. \cite{pe
 \end{figure}
 
 \section{Visual Design Strategy and Rationale}
-In designing the visual warnings for our phishing detection system, we aimed to strike a balance between modern aesthetics and the need to convey urgency effectively. Our design philosophy centered around making the warnings not only noticeable but also readable and distinct from the email content itself, ensuring that they were immediately recognized as alerts rather than just another part of the email.
+In this section we delve into the visual design strategy for the phishing warnings developed in our study, aiming to merge aesthetics with functionality to create an effective warning mechanism. Building upon established research \cite{wogalter2002}, our design approach was crafted to enhance the salience, recognizability, and comprehensibility of warnings. We focused on several key elements identified in the literature as critical for maximizing the effectiveness of visual warnings: color usage, typography, and the inclusion of universally recognized symbols. These elements were chosen based on their proven ability to capture attention quickly and convey urgency effectively, ensuring that users could not only notice but also understand the warnings promptly and act accordingly.
 
 \subsection{Color Scheme and Typography}
-We selected a vivid shade of red (hex: \#ff4d4d) for the background of our warnings to leverage its universal association with danger and urgency, effectively capturing the user's attention. This choice is supported by psychological research indicating that red can trigger heightened alertness and caution \cite{kuniecki}. To complement this, we used a contrasting yellow triangle, a symbol universally recognized for caution, to enhance the visibility and impact of the warnings. To make the warnings easier on the eyes, we used rounded corners.
-The font choice, Segoe UI, was selected for its clarity and modern appearance. 
+The choice of a vivid shade of red (hex: \#ff4d4d) for the background of our warnings leverages its psychological impact, as this decision is rooted in research indicating that red can trigger heightened alertness and caution \cite{kuniecki, wogalter2002}. The addition of a contrasting yellow triangle, serving as a pictorial symbol universally recognized for caution, further enhances the visibility and impact of the warnings. This use of universally understood symbols is supported by literature emphasizing the importance of immediate comprehension in warning design \cite{wogalter2002}. \newline
+Rounded corners were introduced to the warning design to make the visual alerts appear more modern and less aggressive, maintaining user comfort without sacrificing visibility. This design choice aligns with contemporary design trends that favor user-friendly interfaces. \newline
+The font choice, Segoe UI, was selected for its clarity and the decision to use bold fonts aims to further enhance readability.
 
 \subsection{Animation and Timing}
 Each warning features a sliding animation that initiates one second after the email is opened. This deliberate delay and the dynamic entrance of the warnings were designed to distinguish them clearly from the static email content. By introducing the warnings as distinct, dynamic elements, we aimed to disrupt the user's initial scan of the email content, drawing their focus directly to the alert and reinforcing the perception of the warnings as separate and urgent. Research supports this approach, showing that animations can significantly enhance the allocation of attentional resources, making such dynamic elements more effective at capturing and holding viewer attention \cite{muller}. This strategic use of animations is therefore critical in ensuring that the warnings are not only noticed but also perceived as immediate and pressing alerts.
@@ -629,7 +648,7 @@ As we only want our warnings to appear for a predefined set of emails, the plugi
 
 \textbf{Event Listeners}
 
-For our hover-triggered tooltips on suspicious links we added an event listener to the hyperlink, which listens for mouse events and triggers the appearance of the tooltip when necessary.
+For our hover-triggered tooltips on suspicious links we added an event listener to the hyperlink, which listens for mouse events and triggers the appearance of the tooltip when necessary. \newpage
 
 \textbf{Animations}
 
@@ -637,7 +656,7 @@ For animations we used the CSS @keyframes at-rule\footnote{ \href{https://develo
 
 \textbf{Interactive Elements}
 
-This plugin also underpins the functionality of variant 1 of our greeting-specific warning (\ref{fig:greeting1}). Within the HTML of the email, we embedded a list that represents past emails. The plugin expands each list item with an interactive capability: clicking any list entry opens a new tab displaying the content of the corresponding past email. Additionally the plugin handles the styling of the buttons. It applies a green background color to indicate interactivity and sets the cursor to a pointer, visually cueing users that the entries are clickable. \newpage
+This plugin also underpins the functionality of variant 1 of our greeting-specific warning (\ref{fig:greeting1}). Within the HTML of the email, we embedded a list that represents past emails. The plugin expands each list item with an interactive capability: clicking any list entry opens a new tab displaying the content of the corresponding past email. Additionally the plugin handles the styling of the buttons. It applies a green background color to indicate interactivity and sets the cursor to a pointer, visually cueing users that the entries are clickable. 
 
 \textbf{Mock Phishing Page}
 
@@ -726,9 +745,9 @@ We opted to use the short version of the ATI scale due to its ability to efficie
 
 \textbf{Design Response}
 
-Clarity and Legibility: Participants generally found the color red effective in drawing attention, with one noting \textit{"Red is just very catchy"} (P9), highlighting the visual impact of vibrant colors. The legibility of warnings was often a concern, as evidenced by comments such as \textit{"It’s the white on red what makes it difficult to read at times."} (P9), indicating difficulties with text contrast. %Building on this feedback adjustments were made later in the study, starting from particpant 12, such as using a deeper shade of red and a clearer font, aiming to enhance clarity. Doing so did improve participants' response regarding the legibility of the warnings.
-    
-Impact of Animations: Animations were noted for their effective attention-grabbing capabilities. For instance, one participant mentioned, \textit{"When the text field moves in like this, your eyes automatically move there."} (P1), showing how animations guide viewers' focus. A participant remarked on the possible negative impact of frequent animations, stating, \textit{"Moving warnings are more noticeable than ones that just appear on the screen. But if you put moving warnings on all phishing mails, it might be overwhelming and tire the eyes and mind. A balance is necessary. Maybe being too flashy, could even lead to desensitization over time."} (P5) This comment highlights the delicate balance needed in designing effective alerts that capture attention without leading to user fatigue or desensitization. Some participants also noted that the animations were too slow to appear, \textit{"It would be better if the warnings appeared immediately upon opening the email instead of having a delay"} (P5), which could lead to critical oversights. %Building upon this, we decided to remove the delay for the warning to appear, starting from participant 12. 
+Clarity and Legibility: Participants generally found the color red effective in drawing attention, with one noting \textit{"The red is just very catchy"} (P9), highlighting the visual impact of vibrant colors. The legibility of warnings was often a concern, as evidenced by comments such as \textit{"It’s the white on red what makes it difficult to read at times."} (P9), indicating difficulties with text contrast. 
+
+Impact of Animations: Animations were noted for their effective attention-grabbing capabilities. For instance, one participant mentioned, \textit{"When the text field moves in like this, your eyes automatically move there."} (P2), showing how animations guide viewers' focus. A participant remarked on the possible negative impact of frequent animations, stating, \textit{"Moving warnings are more noticeable than ones that just appear on the screen. But if you put moving warnings on all phishing mails, it might be overwhelming and tire the eyes and mind. A balance is necessary. Maybe being too flashy, could even lead to desensitization over time."} (P5) This comment highlights the delicate balance needed in designing effective alerts that capture attention without leading to user fatigue or desensitization. Some participants also noted that the animations were too slow to appear, \textit{"It would be better if the warnings appeared immediately upon opening the email instead of having a delay"} (P5), which could lead to critical oversights. %Building upon this, we decided to remove the delay for the warning to appear, starting from participant 12. 
     
 Placement: Participants commonly observed that warnings placed on the side of the email were less noticeable, often residing in their peripheral vision. As one participant expressed, \textit{"I actually found this one a bit inconspicuous because you have the email body here and the warning there. It reminds me of those advertisements on websites placed on the side of the page."} (P1) Conversely, warnings integrated directly into the email body proved to be more conspicuous. Participants reported that these warnings grabbed their attention immediately upon opening the email, as they were in the direct line of sight while reading the email content. 
 
@@ -753,16 +772,16 @@ The qualitative data analysis underscored that many participants found the greet
 
 \subsection{Refining Warning Design: Incorporating Feedback}
 As outlined in section \ref{adjust}, modifications were made to the phishing warning designs beginning with participant 12. 
-These changes were positively received, as indicated by subsequent participant feedback. Post-adjustment, there were no further complaints regarding the readability of the text or the timing of the animations, except for a single comment about the red tone being potentially too strong. Participants appreciated the quicker responsiveness and greater clarity of the warnings, which effectively addressed the initial concerns raised about legibility and the timing of animation effects.
+These changes were positively received, as indicated by subsequent participant feedback. Post-adjustment, there were no further complaints regarding the readability of the text or the timing of the animations, except for a single comment about the red tone being potentially too strong (P15). Participants appreciated the quicker responsiveness and greater clarity of the warnings, which effectively addressed the initial concerns raised about legibility and the timing of animation effects. 
 
 %Participants pointed out the necessity for clearer visual cues, leading to a transition to a deeper shade of red to enhance visibility (hex: \#f00c0c). The font choice was also critical; based on suggestions for improved legibility, we shifted to a font that offered greater clarity and readability. More specifically we switched to the font face "Open Sans" and started using more bold fonts. Additionally, the timing and behavior of animations were refined. We observed a common sentiment that immediate, rather than delayed, warning animations were prefered. Therefore, we altered the warning displays to appear instantly as the email was accessed, eliminating any previous delay. A detailed before and after comparision of each warning design is attached in appendix \ref{sec:warnings}.
 
 \section{Eyetracking Results}
 \label{sec:eyetrackingres}
 The strategic placement of phishing warnings in email interfaces can significantly influence their effectiveness. To investigate the underlying gaze patterns users exhibit when scanning email content and how these can inform optimal warning placement, we established several hypotheses and employed eye-tracking technology for validation. \newline
-During the data analysis phase, it was noted that the eye-tracking data for one participant (P13) was significantly lower in sample size compared to others. This anomaly could be attributed to improper seating position or a flawed calibration process. To maintain the integrity and reliability of the analysis, this participant's data was excluded, resulting in a total of 15 eye-tracking samples being considered for the final evaluation.
+During the data analysis phase, it was noted that the eye-tracking data for one participant (P14) was significantly lower in sample size compared to others. This anomaly could be attributed to improper seating position or a flawed calibration process. To maintain the integrity and reliability of the analysis, this participant's data was excluded, resulting in a total of 15 eye-tracking samples being considered for the final evaluation.
 
-A full export of our raw eyetracking data is provided the GitHub repository linked in appendix \ref{sec:github}.
+A full export of our raw eyetracking data for each AOI is provided the GitHub repository linked in appendix \ref{sec:github}.
 
 
 \subsection{Hypothesis 1 (H1): Delayed Animation's Influence on Reading Pattern}
@@ -771,7 +790,7 @@ We hypothesized that the delayed slide-in animation of warnings would disrupt us
 
 \subsection{Hypothesis 2 (H2): Visibility of Side-Placed Warnings} 
 Our second hypothesis posited that side-placed warnings would be noticed later in the email reading process—if at all—compared to those placed within the body or at the top. This hypothesis is rooted in the premise that users give precedence to the central content of the email, potentially overlooking peripheral information, which could be confirmed by delayed or absent gaze points on these areas. \par
-\textit{Analysis:} The eye-tracking analysis showed that warnings positioned on the side of the email interface consistently captured attention quickly but later than those integrated within the main content. The focus of gaze primarily remained on the central areas of the emails, with peripheral warnings drawing attention only after the central content had been reviewed. This observation was consistent across the study's participants, supporting the hypothesis that side-placed warnings are less immediately noticeable. \newline Detailed eye-tracking metrics reinforce this finding, indicating that it took a median time of \textasciitilde2 seconds for participants to direct their gaze towards side-placed warnings. Notably there were significant outliers where the time to first fixation extended well beyond the median, reaching up 14.01 seconds. These outliers indicate that under certain conditions, the delay in noticing side-placed warnings can be substantially longer.
+\textit{Analysis:} The eye-tracking analysis showed that warnings positioned on the side of the email interface consistently captured attention quickly but later than those integrated within the main content. The focus of gaze primarily remained on the central areas of the emails, with peripheral warnings drawing attention only after the central content had been reviewed. This observation was consistent across the study's participants, supporting the hypothesis that side-placed warnings are less immediately noticeable. \newline Detailed eye-tracking data (see figure \ref{sideaoi}) further corroborates this finding, showing that the median time taken for participants to first fixate on the Side AOI was approximately 2 seconds. To put this in contrast we compared this to the Top AOI data, which recorded a notably quicker median time to first fixation of approximately 1.2 seconds.  
 
 \begin{figure}[H]
 \centering
@@ -783,7 +802,7 @@ Our second hypothesis posited that side-placed warnings would be noticed later i
     xmin=0, xmax=16, 
     ymin=0, ymax=15,  
     xtick={1,2,...,15}, 
-    xticklabels={1,2,...,12,14,15,16}, 
+    xticklabels={1,2,...,12,13,15,16}, 
     xticklabel style={font=\footnotesize, rotate=0}, 
     yticklabel style={font=\footnotesize}
 ]
@@ -791,27 +810,63 @@ Our second hypothesis posited that side-placed warnings would be noticed later i
     only marks,
     mark=*,
     mark size=2.5pt,
-    scatter=false, 
+    scatter=true, 
     color=blue, 
     fill=blue  
 ] table [row sep=\\,y=data, x=seq] {
     seq  data\\
     1    1.95\\ 2    10.17\\ 3    1.46\\ 4    14.01\\ 5    2.32\\
     6    0.99\\ 7    1.58\\ 8    2.21\\ 9    1.91\\ 10   3.59\\
-    11   1.91\\ 12   7.79\\ 13   1.37\\ 14   1.31\\ 15   1.18\\
+    11   1.91\\ 12   7.79\\ 13   1.37\\ 14   1.18\\ 15   1.31\\
 };
 \end{axis}
 \end{tikzpicture}
 \caption{Scatter Plot of Time to First Fixation for Side AOI}
+\label{sideaoi}
 \end{figure}
 
-\subsection{Hypothesis 3 (H3): Prompt Recognition and Sustained Engagement of Body-Integrated Warnings}
-Lastly, we theorized that warnings seamlessly integrated directly into the email body (e.g. Greeting or Signature Warning) would not only be detected more swiftly by users but also hold their attention for longer periods. This hypothesis rests on the belief that users are more attuned to and thus more likely to quickly notice and continue to engage with content that is presented within the primary focus of their attention.
+\iffalse
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Participant ID},
+    ylabel={Time to First Fixation (seconds)},
+    grid=major,
+    xmin=0, xmax=16, 
+    ymin=0, ymax=16,  
+    xtick={1,2,...,15}, 
+    xticklabels={1,2,...,12,13,15,16}, 
+    xticklabel style={font=\footnotesize, rotate=0}, 
+    yticklabel style={font=\footnotesize}
+]
+\addplot+[
+    only marks,
+    mark=*,
+    mark size=2.5pt,
+    scatter=true, 
+    color=blue, 
+    fill=blue  
+] table [row sep=\\,y=data, x=seq] {
+    seq  data\\
+    1    2.42\\ 2    0.54\\ 3    1.21\\ 4    0.61\\ 5    2.75\\
+    6    0.22\\ 7    1.30\\ 8    1.23\\ 9    2.72\\ 10   1.29\\
+    11   1.10\\ 12   0.15\\ 13   2.88\\ 14   1.30\\ 15   15.59\\
+};
+\end{axis}
+\end{tikzpicture}
+\caption{Scatter Plot of Time to First Fixation for Top AOI}
+\label{sideaoi}
+\end{figure}
+\fi
+
+\subsection{Hypothesis 3 (H3): Sustained Engagement of Body-Integrated Warnings}
+Lastly, we theorized that content integrated directly into the email body (e.g. Greeting or Signature Warning) would hold user attention for longer periods. This hypothesis rests on the belief that users are more attuned to engage with content that is presented within the primary focus of their attention.
 
 \textit{Analysis:} 
-Data strongly supported the hypothesis that warnings integrated directly into the email body were detected more quickly and engaged with more thoroughly by users than those placed at the side. The heatmap in figure \ref{fig:heatmap} showed a predominant focus on the central part of the email where these warnings were located. This resulted in not only quicker detection but also significantly longer engagement times compared to warnings placed at the sides of the email. \newline
-The analysis of average fixation durations (figure \ref{avgfix}) corroborates these findings, revealing that engagement times for the center AOI were generally longer across participants. However, there were notable exceptions for participants 7 and 14, where the fixation duration on the center AOI was shorter compared to the other participants. 
+Data strongly supported the hypothesis that warnings integrated directly into the email body were engaged with more thoroughly by users than those placed at the side. The analysis of average fixation durations (figure \ref{avgfix}) revealed that engagement times for the Center AOI were generally longer across participants. However, there were notable exceptions for participants 7 and 13, where the fixation duration on the Center AOI was shorter compared to the other participants. 
 
+%The heatmap in figure \ref{fig:heatmap} showed a predominant focus on the central part of the email where these warnings were located. This resulted in not only quicker detection but also significantly longer engagement times compared to warnings placed at the sides of the email. \newline
 %This deviation might suggest variability in user interaction with the email content, potentially influenced by individual differences in reading habits or the visual salience of the warnings for these particular participants.
 %The extended engagement with the center AOI highlights its effectiveness in not only attracting but also maintaining user attention. This is critical in ensuring that warnings are not only noticed but are also sufficiently processed by users, which is essential for the effective communication of security-related information. 
 %The findings suggest that integrating warnings directly within the main content of an email can significantly enhance their noticeability and the extent to which they engage users. Designers might consider positioning crucial information and alerts within the central visual field to maximize their impact. Additionally, understanding the reasons behind the shorter fixation times for specific participants could further refine the design approach, ensuring that warnings are effective across a diverse user base.
@@ -827,13 +882,13 @@ The analysis of average fixation durations (figure \ref{avgfix}) corroborates th
     xmin=0, xmax=16, 
     ymin=0, ymax=500,
     xtick={1,2,...,15}, 
-    xticklabels={1,2,...,12,14,15,16}, 
+    xticklabels={1,2,...,12,13,15,16}, 
     ytick={0, 100,200,300,400,500}, 
     xticklabel style={font=\footnotesize}, 
     yticklabel style={font=\footnotesize},
     legend style={
-        at={(1,1)},
-        anchor=north east,
+        at={(0.1855,0.83)},
+        anchor=south,
         text width=2cm, 
         minimum width=2.5cm, 
         font=\footnotesize 
@@ -872,15 +927,15 @@ The analysis of average fixation durations (figure \ref{avgfix}) corroborates th
 \label{avgfix}
 \end{figure}
 
-\begin{figure} [ht]
-    \centering
-    \includegraphics[width=1\linewidth]{figures/heatmap_overlay.png}
-    \caption{Accumulated eyetracking heatmap generated in Tobii Pro Lab}
-    \label{fig:heatmap}
-\end{figure}
+%\begin{figure} [ht]
+    %\centering
+    %\includegraphics[width=1\linewidth]{figures/heatmap_overlay.png}
+    %\caption{Accumulated eyetracking heatmap, generated in Tobii Pro Lab}
+    %\label{fig:heatmap}
+%\end{figure}
 
 \chapter{Discussion}
-\section{Qualitative Feedback}
+\section{Interpretation of Qualitative Feedback}
 \subsection{Emerging Themes and Best Practices}
 The qualitative feedback analysis illuminates several emerging themes that contribute to the effectiveness of phishing warnings. Reflecting on these, we can delineate best practices for designing phishing warning systems that align with user expectations.
 
@@ -896,13 +951,13 @@ This emphasis on context-rich warnings aligns with findings from other studies \
 
 \textbf{Trust and Interactivity}
 
-The trustworthiness of warnings is paramount; users must feel confident interacting with them. This includes a hesitance to engage with clickable elements within the warnings due to fear of exacerbating a potential threat. Best practices would, therefore, involve clearly distinguishing warning elements from potential phishing mechanisms and ensuring that interactive components, when used, are immediately recognizable as safe and official parts of the email client interface.
+The trustworthiness of warnings is paramount; users must feel confident interacting with them. This includes a hesitance to engage with clickable elements within the warnings due to fear of exacerbating a potential threat. Best practices would therefore involve clearly distinguishing warning elements from potential phishing mechanisms and ensuring that interactive components, when used, are immediately recognizable as safe and official parts of the email client interface.
 
 \textbf{Incorporating User Feedback for Iterative Improvement}
 
 The inclusion of user feedback into the design process is not only beneficial but essential for the development of effective phishing warnings. Adjustments made in response to participant insights, such as enhancing color contrast to improve legibility, exemplify how iterative design based on user experience can significantly amplify the effectiveness of security measures. As highlighted in the article by Grobler et al. \cite{grobler} actively engaging users in refining security solutions helps tailor these systems to better meet their needs and expectations, thereby increasing their efficacy and user adoption rates. Best practices would, therefore, advocate for continuous user testing and refinement, ensuring that warnings adapt over time to align with evolving user behaviors and phishing tactics. This proactive approach ensures that security measures remain robust, user-friendly, and effective in real-world scenarios.
 
-\subsection{RQ1: Users’ Perceptions of Phishing Warnings and Their Effectiveness}
+\subsection{Summary: Users’ Perceptions of Phishing Warnings}
 To address RQ1 regarding user perceptions and the effectiveness of various phishing warnings in email interfaces, we analyzed qualitative feedback from participants. The effectiveness was assessed based on the ability of warnings to enhance user awareness, encourage appropriate actions to mitigate risks, such as not clicking on malicious links, and improve recognition of phishing threats in future encounters.
 
 \textbf{Perceived Helpfulness and Effectiveness of Warning Types}
@@ -919,48 +974,56 @@ To address RQ1 regarding user perceptions and the effectiveness of various phish
 
 From the feedback, it's clear that users prefer warnings that are not only visible but also informative. Warnings that blend seamlessly into the user's workflow in the email interface, such as those integrated within the primary content, are particularly effective. These warnings grab attention quickly, provide essential information, and are directly interacted with, enhancing both immediate and long-term phishing threat recognition.
 
+\definecolor{Ebb}{rgb}{0.925,0.894,0.894}
+\begin{table} [H]
+\centering
+\begin{tblr}{
+  row{1} = {Ebb},
+  hlines,
+  vlines,
+  hline{1,5} = {-}{0.08em},
+  colspec = {X[1.75,l] X[2.25,l] X[4,l]},
+}
+\textbf{Warning Type}     & \textbf{Key Feature}                 & \textbf{User Feedback}                                                                                                      \\
+Context-Aware    & Actively prevents clicking on links  & Very positive; users felt it was very effective and helpful, appreciating the proactive nature of the warning.              \\
+Content-Specific    & Highlights anomalies in the language & Positive; users appreciated their specificity and educational value, noting they felt more informed about phishing tactics. \\
+Generic Banners           & Broad, non-specific warning          & Less favorable; often overlooked, reported by users as too generic and lacking actionable details.                          
+\end{tblr}
+\caption{Overview of Warning Types and User Feedback}
+\label{tab:types}
+\end{table}
 
-%In examining how users perceive and react to different phishing warning designs, our study revealed clear preferences and perceptions. Users generally found context-specific warnings—those that tied directly to elements like hyperlinks or unusual email signatures and greetings—more helpful and trustworthy. These warnings, by providing clear, relevant context or direct comparisons with typical content, helped users feel better equipped to identify and avoid phishing attempts.
-
-%Conversely, generic banners were often deemed less effective unless they concisely communicated the risks involved. The most effective warnings were those educated users on the reasons behind the warnings and thus enhancing their ability to recognize and respond to phishing threats in future encounters.
-
-%Overall, this feedback underscores the need for phishing warnings that not only capture attention but also educate users, thereby fostering a deeper understanding and stronger defensive actions against phishing attacks.
-
-
-\newpage
 \section{Interpretation of Eye-Tracking Results}
-\subsection{Hypothesis Evaluations}
 
-\textbf{Impact of Delayed Animations}
+\subsection{Impact of Delayed Animations}
 
-The hypothesis (H1) that delayed animations would disrupt the typical email reading pattern and draw more attention was not supported by the data. The implications suggest that while animations serve as useful attention-grabbing tools, their effectiveness does not necessarily benefit from a delayed presentation. Aligning with the qualitative interview results, it appears that ensuring the visibility of warnings immediately upon email viewing is more crucial for capturing attention and facilitating prompt user reactions.
+Our hypothesis that delayed animations would disrupt the typical email reading pattern and draw more attention was not supported by the data. The implications suggest that while animations serve as useful attention-grabbing tools, their effectiveness does not necessarily benefit from a delayed presentation. Aligning with the qualitative interview results, it appears that ensuring the visibility of warnings immediately upon email viewing is more crucial for capturing attention and facilitating prompt user reactions.
 
-\textbf{Effective Warning Placement}
+\subsection{Effective Warning Placement}
 
-The data strongly supported the hypothesis (H3) that warnings integrated into the central viewing area of the email content are noticed more quickly and interacted with more extensively. This result highlights the advantage of aligning warning placements with natural reading behaviors and user expectations, suggesting that integrating security cues directly within the primary content of emails may significantly enhance the detection and responsiveness to phishing attempts. \newline
-In contrast (H2), warnings positioned on the periphery of the email interface, such as the sides, were consistently noticed later. Although our data only indicates a slight delay, this brief period can be critical during a hectic workday for instance. Users, under pressure or multitasking, might not immediately spot these peripheral warnings. This oversight offers a window during which they could inadvertently click on deceptive links or interact with other malicious content. \newline
-Interestingly, qualitative interviews highlighted a gap between the objective eye-tracking results and participants' subjective experiences. Many participants reported not noticing the side-placed warnings at all. This suggests that while eye-tracking data confirmed visual detection, the warnings were not consciously acknowledged by users, likely due to an automatic filtering process.\newline
-Furthermore the presence of outliers where the time to first fixation was exceedingly long underscores the potential severity of this issue. These extreme cases reveal that for some users, the side-placed warnings are not just delayed but might be nearly invisible, akin to the way advertisements on web pages are often ignored due to desensitization. This analogy, supported by the comments of two participants (P1, P9), strengthens the argument that peripheral warnings may be less effective due to a learned tendency to disregard non-central elements, potentially reducing their effectiveness in crucial security contexts.
+The data strongly supports that warnings placed within the central viewing area of an email are engaged with more extensively. This is evidenced by generally longer average fixation durations on the Center AOI. These findings underscore the efficacy of aligning warning placements with natural reading behaviors and user expectations, thereby enhancing the visibility and impact of security warnings. \newline However, the analysis revealed notable deviations for participants 7 and 13, who exhibited shorter fixation durations on the Center AOI compared to other participants. This variability in user interaction suggests that while centrally-placed warnings are generally effective, their impact can vary significantly among users due to individual differences in reading habits or the visual salience of the warnings. \newline
+The extended engagement with central warnings highlights their effectiveness in maintaining user attention, which is crucial for ensuring that warnings are not only noticed but also sufficiently processed. This is vital for the effective communication of security-related information. Based on these insights, designers are encouraged to position crucial information and alerts within the central visual field to maximize their impact. Furthermore, understanding the reasons behind the shorter fixation times for specific participants could inform more tailored design approaches, ensuring that warnings are effective across a diverse user base.
 
-%\textbf{Hypothesis 1: Delayed Animation's Influence on Reading Pattern:}
-%The analysis of eye-tracking data demonstrated that delayed animations did not significantly disrupt or enhance the reading patterns of participants. This finding contradicts our initial assumption that a delayed presentation would shift user focus towards the warnings. The implications suggest that while animations serve as useful attention-grabbing tools, their effectiveness does not necessarily benefit from a delayed presentation. It appears that ensuring the visibility of warnings immediately upon email viewing is more crucial for capturing attention and facilitating prompt user reactions. %This adjustment aligns with user preferences for immediate cues, reinforcing the necessity for warnings to be both conspicuous and timely to effectively counteract phishing threats.
+In contrast, warnings positioned on the periphery of the email interface, such as on the sides, were consistently noticed later and engaged with less extensively. Although our data indicates only a slight delay in detection, this brief period can be critical, particularly during a hectic workday when users may be under pressure or multitasking. This oversight provides a window during which users could inadvertently interact with deceptive links or other malicious content. Moreover, the presence of outliers where the time to first fixation was exceedingly long highlights the potential severity of this issue. \newline
+Furthermore, the average fixation duration on these side-placed warnings was also notably lower than that for central warnings, suggesting that even when the warning is noticed, the engagement is less intensive. This lack of deep engagement suggests that the warnings may not be registering effectively with users. This observation aligns with participant feedback, where many reported not noticing the side-placed warnings at all, despite eye-tracking data confirming visual detection. \newline
+This phenomenon, supported by the comments of two participants (P1, P9), reinforces the argument that peripheral warnings may be less effective due to a learned tendency to disregard non-central elements. The reduced fixation durations further corroborate the likelihood that users engage only superficially with these warnings when they do notice them, which could seriously undermine their effectiveness in security-sensitive environments.
 
-%\textbf{Hypothesis 2: Visibility of Side-Placed Warnings:}
-%Eye-tracking data demonstrated that warnings placed on the sides of the email interface were noticed later. This observation aligns with the hypothesis that centrally placed warnings capture attention more effectively.\newline
-%Interestingly, qualitative interviews revealed a discrepancy between the objective eye-tracking results and participants' subjective experiences. Many participants reported not noticing the side-placed warnings at all. This suggests that while eye-tracking data confirmed visual detection, the warnings were not consciously acknowledged by users, indicating an automatic filtering process. \newline
-%Furthermore, two participants likened the side-placed warnings to advertisements typically found on web pages, which are often ignored due to desensitization. This analogy supports the notion that peripheral warnings may be less effective due to a learned tendency to disregard non-central elements, which could further diminish their impact in critical security contexts.
+\subsection{Summary: Gaze Patterns and Warning Placement}
 
-%\textbf{Hypothesis 3: Prompt Recognition of Body-Integrated Warnings:}
-%Eye-tracking data robustly supported the hypothesis that body-integrated warnings are detected more swiftly and engaged with more thoroughly. The centralized focus of users on the email body naturally led to quicker and more intense interactions with warnings placed in this area. This result highlights the advantage of aligning warning placements with natural reading behaviors and user expectations, suggesting that integrating security cues directly within the primary content of emails may significantly enhance the detection and responsiveness to phishing attempts.
+RQ2 explores how common gaze patterns among users can inform the strategic placement of phishing warnings. The analysis confirms a predominant focus on the central area of the email interface, a natural result of typical reading behaviors. This focal tendency significantly benefits the placement of warnings directly within this central area, ensuring they are both quickly noticed and more actively engaged with.
 
-\subsection{RQ2: Gaze Patterns and Warning Placement}
-\textbf{Central Gaze Concentration} 
+These insights provide a strong foundation for future email interface designs, suggesting that to maximize the impact of phishing warnings, designers should prioritize central visual placement of critical security cues. This approach will significantly improve defense mechanisms against phishing attacks, ensuring that warnings are not only visible but also integrated into the flow of natural user interactions with email content.
 
-The analysis of common gaze patterns among users when scanning email content has revealed key insights into the strategic placement of phishing warnings. The eye-tracking data from our study indicate a strong tendency for users to focus their initial attention on the center of the email content, which aligns with natural reading behaviors. Thus, warnings that were integrated directly into this central area were noticed more swiftly and engaged with more thoroughly compared to warnings placed at the periphery. 
 
-\textbf{Implications for Warning Placement} 
+%\subsection{RQ2: Gaze Patterns and Warning Placement}
+%\textbf{Central Gaze Concentration} 
 
-The findings underscore the necessity of placing phishing warnings within the primary visual path to ensure they are both seen and acted upon promptly. This strategic placement leverages natural gaze behaviors to enhance the visibility and effectiveness of warnings. Furthermore, these insights suggest that the design of email interfaces should consider how information is visually prioritized by users, utilizing this knowledge to design more effective phishing defense mechanisms.
+%This research question explores how common gaze patterns among users can inform the strategic placement of phishing warnings. The eye-tracking data substantiate a pronounced initial focus on the center of the email content. Warnings integrated within this central area not only align with natural reading behaviors but also enhance the immediacy and intensity of user engagement
+
+%\textbf{Implications for Warning Placement} 
+
+%Our findings highlight the critical importance of aligning phishing warnings with natural gaze patterns. By situating warnings within the primary visual path, their visibility and effectiveness are significantly increased. This approach not only ensures that warnings are seen promptly but also aids in their swift recognition and processing, crucial for effective phishing defense. Future email interface designs can leverage these insights, prioritizing central visual placement of critical security information to combat phishing more effectively.
+
 
 \section{Limitations}
 
@@ -1003,44 +1066,88 @@ All links were last followed on \today{}.
 
 \section{GitHub Repository}
 \label{sec:github}
-This public repository contains everything related to the study (e.g. Plugin Source, E-Mail Samples, Transcripts etc.).\par
-\href{https://github.com/yunuseyvz/Bachelorthesis-Phishing-Warning-Techniques}{https://github.com/yunuseyvz/Bachelorthesis-Phishing-Warning-Technique}
+\href{https://github.com/yunuseyvz/Bachelorthesis-Phishing-Warning-Techniques}{https://github.com/yunuseyvz/Bachelorthesis-Phishing-Warning-Techniques}
+\par
+This public repository contains: 
 
+\begin{itemize}
+    \item Thunderbird Plugin Sourcecode
+    \item Email Samples
+    \item Python Script Sourceode
+    \item Eyetracking Data Exports 
+    \item MAXQDA2024 Project Files and Transcripts (\textit{Note: Transcripts have been manually reviewed. Irrelevant and personal information have been removed.})
+
+\end{itemize}
 
 \section{Study Protocol}
 \label{sec:protocol}
-\textbf{Welcome and Consent:}
+
+\textbf{Pre-Setup}
 \begin{itemize}
-    \item Introduction to the study.
-    \item Participants read and sign the consent form.
-    \item Notification of screen, audio recording, and eye-tracking data collection. All data is anonymized.
+    \item Software Setup: Set up Mozilla Thunderbird on the participant's computer, installing the necessary addon that will be used during the study. Ensure that all settings are optimal for the tasks ahead. Install Tobii Pro Lab for extensive eye-tracking tools.
+    \item Seating Arrangement: Arrange for a non-rolling chair to minimize movement and ensure more accurate eye-tracking data.
+    \item Eye Tracker: Attach and setup the eye tracker.
+    \item Moderator's Setup (optional): Arrange a second screen for the moderator in Tobii Pro Lab to monitor and observe the eye-tracking data in real-time.
 \end{itemize}
 
-\textbf{Preparation:}
+\textbf{Welcome and Consent}
 \begin{itemize}
-    \item Use a non-rolling chair for better eye-tracking results.
-    \item Overview of the eye tracker and setup instructions.
-    \item Setup of Mozilla Thunderbird with necessary addons.
-    \item Setup of Tobii Pro Lab with a second screen for the moderator.
-    \item Calibration of eye tracker integrated into Tobii Pro Lab's timeline.
+    \item Introduction to the Study: 
+    \begin{itemize}
+        \item[ ]\textit{"Hello and welcome! Thank you for participating in our study today.  I will be guiding you through the process and the session will last about 30 minutes. You will get a small task where you need to sort through a fictional inbox, I will explain in detail when we get there. While doing that we will have an eye tracker running, which will track and record you eye movements. After the sorting task I will ask you a couple of questions."}
+    \end{itemize}
+
+    \item Consent Form:
+        \begin{itemize}
+            \item[ ]\textit{ "Before we begin, please take a moment to read this consent form. If everything is clear, please sign the form at the bottom."}
+        \end{itemize}
+        
 \end{itemize}
 
-\textbf{Conducting the Study:} Participants are allowed to ask questions throughout if anything is unclear.
-
-\textbf{Part 1: Email Sorting (Approximately 10 Minutes):}
+\textbf{Before Beginning}
 \begin{itemize}
-    \item Role-play as an employee at ``Cloudtech'', sorting emails as if it's their actual work inbox. Note: To simplify the process user may only delete or not delete emails. No further actions are needed.
-    \item Encourage to think aloud while sorting.
-    \item Interaction with emails, including links and attachments, is allowed.
-    \item Discussion follows after about 10 minutes.
+    \item Eye Tracker Calibration and Audio Recording
+        \begin{itemize}
+            \item[] \textit{"Our first step will be to calibrate the eye tracker for a more accurate data capture. Just follow the instructions on the screen. This will take around 30 seconds. (...) "Thank you for that. Now we can begin with the task. I will also start the audio recording now."}
+        \end{itemize}
 \end{itemize}
 
-\textbf{Part 2: Detailed Interview (Approximately 10 Minutes):}
+\textbf{Phase 1: Email Sorting (Approximately 10 Minutes)}
+\begin{itemize}
+    \item Task Description:
+        \begin{itemize}
+            \item[] \textit{"In this part, you will act as an employee at 'Cloudtech'. Your task is to sort through your emails as you would in your work inbox. You only need to decide whether to delete each email or keep it. No other actions are necessary. "As you sort through the emails, please try to verbalize your thoughts. Say out loud what you are thinking about each decision. This helps us understand your reasoning. Feel free to open any links or attachments in the emails as you see fit. Interact with the emails as you would normally. Let me know when you are done."}
+        \end{itemize}
+    \item Task Finished:
+        \begin{itemize}
+            \item[] \textit{"Alright, thank you. Now we will get to the second phase of the study."}
+        \end{itemize}
+\end{itemize}
 
-Before moving on to the interview participants are debriefed. The warning designs are shown and explained again. See appendix \ref{sec:interview} for the Interview Questions
+\textbf{Part 2: Detailed Interview (Approximately 10 Minutes)}
+\begin{itemize}
+    \item Debriefing:
+        \begin{itemize}
+            \item[] \textit{"Before we move on to the interview I will debrief you on what this study is about. Our study is about how users interact and engage with different types of visual warnings in email clients. For that we first collect eyetracking data for an objective view. After that we conduct a small semi-structured interview to ask you about your subjective experiences with the warnings. Before we move on, I will briefly show you through the warnings again. (...) Alright now to the questions."}
+        \end{itemize}
+    \item Interview: 
+        \begin{itemize}
+            \item[] \textit{See appendix \ref{sec:interview}.}
+        \end{itemize}
+    
+\end{itemize}
 
-\textbf{Conclusion of the Session:} Compensation of €10 via PayPal/Transfer or 1 MMI point.
-
+\textbf{Conclusion of the Session}
+\begin{itemize}
+    \item Compensation: 
+        \begin{itemize}
+            \item[] \textit{"Alright. Thanks a lot for participating! You will be compensated with 10€ via PayPal or bank transfer. I will send you a link, where you can enter your payment information. Alternatively you can opt for 1 MMI point, if you are a Media Informatics Student."}
+        \end{itemize}
+    \item Thank You and Farewell: 
+        \begin{itemize}
+            \item[] \textit{"Your input is very valuable to our research. Thank you again for your time today. Have a great day!"}
+        \end{itemize}
+\end{itemize}
 
 \section{Interview Questions}
 \label{sec:interview}
@@ -1089,17 +1196,18 @@ These are the questions posed to the participants in the second phase. Note that
 \section{Warning Designs}
 \label{sec:warnings}
 Below is an overview of version 1 of each warning type.
-
+\par
+\par
 \begin{figure} [H]
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/banner1_old.png}
+  \includegraphics[width=1\linewidth]{figures/banner1_old.png}
   \caption{Variant 1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/banner2_old.png}
+  \includegraphics[width=1\linewidth]{figures/banner2_old.png}
   \caption{Variant 2}
 \end{subfigure}
 \caption{Generic Banner (Version 1)}
@@ -1109,12 +1217,12 @@ Below is an overview of version 1 of each warning type.
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/hover1_old.png}
+  \includegraphics[width=1\linewidth]{figures/hover1_old.png}
   \caption{Variant 1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/hover2_old.png}
+  \includegraphics[width=1\linewidth]{figures/hover2_old.png}
   \caption{Variant 2}
 \end{subfigure}
 \caption{Tooltip Warning on Link Hover (Version 1)}
@@ -1124,12 +1232,12 @@ Below is an overview of version 1 of each warning type.
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/sig1_old.png}
+  \includegraphics[width=1\linewidth]{figures/sig1_old.png}
   \caption{Variant 1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/sig2_old.png}
+  \includegraphics[width=1\linewidth]{figures/sig2_old.png}
   \caption{Variant 2}
 \end{subfigure}
 \caption{Signature-Specific Warning (Version 1)}
@@ -1139,12 +1247,12 @@ Below is an overview of version 1 of each warning type.
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/greeting1_old.png}
+  \includegraphics[width=1\linewidth]{figures/greeting1_old.png}
   \caption{Variant 1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/greeting2_old.png}
+  \includegraphics[width=1\linewidth]{figures/greeting2_old.png}
   \caption{Variant 2}
 \end{subfigure}
 \caption{Greeting-Specific Warning (Version 1)}
