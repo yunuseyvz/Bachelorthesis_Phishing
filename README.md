@@ -7,11 +7,11 @@ This repository contains all the materials related to my Bachelorthesis project 
 ## Contents
 
 - `thunderbird_plugin/`: Source code for the Thunderbird plugin developed as part of this thesis.
-- `shuffle_script/`: A script used in the study to randomize the email order.
-- `email_samples/`: The mock email samples used in the study.
-- `study_materials/`: Everything related to the study procedure, e.g. protocols and transcripts.
-- `thesis/`: The final thesis document and related materials.
-- `presentation/`: Slides and other materials used for the thesis defense presentation.
+- `shuffle_script/`: A python script used in the study to randomize the email order after each participant.
+- `study_materials/`: Everything related to the study procedure, e.g. protocol, warning designs and email samples.
+- `study_results/`: Contains the collected eye tracking data and interview transcripts.
+- `thesis_files/`: The thesis latex files and document.
+- `final_pres/`: Slides used for the thesis defense presentation.
 
 ## Plugin Installation
 
