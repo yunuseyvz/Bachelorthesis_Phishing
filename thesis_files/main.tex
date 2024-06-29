@@ -250,7 +250,7 @@ The implications of these results are substantial, advocating for a shift in how
 \chapter{Background and Related Work}
 \label{sec:relatedwork}
 
-In the dynamic field of cybersecurity, understanding the multifaceted nature of phishing attacks is essential for developing effective defensive strategies. This section provides a comprehensive overview of the key areas of research that inform our study on phishing warnings. By exploring the psychological underpinnings of social engineering, the evolution of phishing detection technologies, and the critical role of user education, we aim to contextualize our research within the broader discourse on combating phishing. Each of these areas offers vital insights that directly influence the design and implementation of phishing warnings, ensuring they are not only technically sound but also psychologically effective. This background forms the basis for our approach to enhancing how users recognize and respond to phishing threats.
+In the dynamic field of cybersecurity, understanding the multifaceted nature of phishing attacks is essential for developing effective defensive strategies. This section provides an overview of the key areas of research that inform our study on phishing warnings. By exploring the psychological underpinnings of social engineering, the evolution of phishing detection technologies, and the critical role of user education, we aim to contextualize our research within the broader discourse on combating phishing. Each of these areas offers vital insights that directly influence the design and implementation of phishing warnings, ensuring they are not only technically sound but also psychologically effective. This background forms the basis for our approach to enhancing how users recognize and respond to phishing threats.
 
 \section{Phishing Definition and Techniques}
 Phishing is a deceptive practice where cybercriminals use fraudulent communication, typically via email, to trick individuals into revealing personal information, such as passwords and credit card numbers. This cyber threat exploits the trust of users through cleverly disguised messages that mimic legitimate sources. Understanding the array of phishing techniques is essential for developing effective countermeasures and for training users to recognize and avoid these threats.
@@ -338,7 +338,7 @@ To establish a genuine email environment for the study, we created a suite of 30
 \subsection{Consent, Demographics and ATI-S}
 
 Before beginning with the study tasks, participants are required to sign a consent form that includes permissions for screen and audio recording as well as eye tracking. Following consent, they are asked to provide demographic information such as age, gender, educational background, and professional experience. Additionally, participants fill out the short version of the Affinity for Technology Interaction Scale (ATI-S)\footnote{https://ati-scale.org/}. This scale assesses individuals' comfort levels and predispositions towards technology, which helps to illuminate how these factors may influence their perceptions and interactions with phishing warnings. \newline
-We opted to use the short version of the ATI scale due to its ability to efficiently measure technological affinity without imposing extensive questionnaire fatigue on participants. The shorter scale offers a balance between comprehensive assessment and participant convenience, ensuring capture of data while maintaining high engagement levels. 
+We opted to use the short version of the ATI scale due to its ability to efficiently measure technological affinity without imposing extensive questionnaire fatigue on participants and maintaining high engagement levels.
 
 \subsection{Briefing and Setup}
 
@@ -364,7 +364,7 @@ The observer's role during this phase is to listen and monitor the explanations 
 \subsection{Phase Two: Gathering Qualitative Feedback}
 
 Following the sorting task, participants undergo a detailed semi-structured interview. They are asked about their subjective perceptions, their strategies for identifying phishing attempts and their opinions on the clarity and effectiveness of different warning designs.
-This qualitative data enriches the study’s findings by adding personal personal context to the observed behaviours and eyetracking metrics. The interview questions cover several key areas:
+This qualitative data enriches the study’s findings by adding personal personal context to the observed behaviours and eye tracking metrics. The interview questions cover several key areas:
 
 \begin{itemize}
     \item General Perception: Inquiry into how participants perceived the warnings overall, including any elements that particularly stood out to them and the influence of the warnings on their decision making process.
@@ -407,7 +407,7 @@ To evaluate the eye tracking data, we formulated the following hypotheses:
     \item[\textbf{H3}] Content integrated directly into the email body (e.g. Greeting or Signature Warning) will hold user attention for longer periods.
 \end{itemize}
 
-To analyze the eye-tracking data, we used the Tobii Pro Lab software, which provided comprehensive tools for visualizing and interpreting gaze patterns. Our analysis involved several key tasks:
+To analyze the eye tracking data, we used the Tobii Pro Lab software, which provided many tools for visualizing and interpreting gaze patterns. Our analysis involved several key tasks:
 
 \begin{enumerate}
     \item \textbf{Defining Areas of Interest (AOI):} We defined specific AOIs within the email interface. This allowed us to quantify metrics such as fixation durations and frequencies for specific areas. The AOIs included different parts of the email where warnings were placed (see figure \ref{fig:aoi}).
@@ -418,11 +418,11 @@ To analyze the eye-tracking data, we used the Tobii Pro Lab software, which prov
 To align with our hypotheses, we collected the following eye tracking metrics:
 
 \begin{enumerate}
-    \item \textbf{Time to First Fixation:} This metric measures the time it takes for participants to fixate on a specific AOI after the email is presented. It helps us understand how quickly each warning design draws attention compared to others.
+    \item \textbf{Time to First Fixation:} This metric measures the time it takes for participants to fixate on a specific AOI after the email is presented \cite{eyetrack}. It helps us understand how quickly each warning design draws attention compared to others.
     \item \textbf{Average Fixation Duration:} By averaging the duration of all fixations within each AOI, we can assess the overall engagement level with different components of the email interface. Fixation durations range from 150-300ms, with higher durations meaning a higher level of engagement \cite{eyetrack}.
 \end{enumerate}
 
-These methods and metrics allowed us to rigorously test our hypotheses and evaluate the effectiveness of different phishing warning designs in capturing user attention.
+These methods and metrics allowed us to test our hypotheses and evaluate the effectiveness of different phishing warning designs in capturing user attention.
 
 \begin{figure} [ht]
     \centering
@@ -525,7 +525,7 @@ This approach aligns closely with the research conducted by Petelka et al. \cite
 \textbf{Greeting-Specific Warning:}  Similar to the previously described signature warning, this alert focuses on irregularities in the email's greeting. It is designed to catch attention when the greeting does not match the usual formats, suggesting that the email could be a phishing attempt.
 
 \begin{itemize}
-    \item Variant 1:  Includes "proof" from past emails, similar to the signature warning variation. Additionaly this warning banner is interactive, as the user can click on the corresponding email, opening it in a new tab. This is designed to see if direct comparisons with previous legitimate emails help users to better understand why the email might be a phishing attempt.
+    \item Variant 1:  Includes "proof" from past emails, similar to the signature warning variation. Additionally this warning banner is interactive, as the user can click on the corresponding email, opening it in a new tab. This is designed to see if direct comparisons with previous legitimate emails help users to better understand why the email might be a phishing attempt.
     \item Variant 2: Without additional context, focusing on a simple cautionary message next to the greeting. This variation assesses users' ability to detect phishing without the aid of explicit historical comparisons.
 \end{itemize}
 
@@ -880,7 +880,8 @@ General             & Broad, non-specific warning          & Less favorable; oft
 
 \subsection{Impact of Delayed Animations}
 
-Our hypothesis that delayed animations would disrupt the typical email reading pattern and draw more attention was not supported by the data. The implications suggest that while animations serve as useful attention-grabbing tools, their effectiveness does not necessarily benefit from a delayed presentation. Aligning with the qualitative interview results, it appears that ensuring the visibility of warnings immediately upon email viewing is more crucial for capturing attention and facilitating prompt user reactions.
+Our hypothesis that delayed animations would disrupt the typical email reading pattern and draw more attention was not supported by the data. The implications suggest that while animations serve as useful attention-grabbing tools, their effectiveness does not necessarily benefit from a delayed presentation. Aligning with the qualitative interview results, it appears that ensuring the visibility of warnings immediately upon email viewing is more crucial for capturing attention and facilitating prompt user reactions. \newline
+However, it is important to note, that the evaluation of this hypothesis may be limited by the methodology used. Only 4 participants tested the new warnings with no animation delay, which may not provide a sufficiently robust dataset to draw definitive conclusions.
 
 \subsection{Effective Warning Placement}
 
